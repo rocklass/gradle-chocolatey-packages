@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>gradle</id>
+    <title>Gradle</title>
+    <version>2.12</version>
+    <authors>Gradle Inc.</authors>
+    <owners>Daniel Schröder</owners>
+    <summary>Gradle is a modern open source polyglot build automation system. It can automate and integrate your devOps toolchain with a concise and expressive build programming language based upon the concepts of Apache Ant and Apache Maven.</summary>
+    <description>Gradle combines the power and flexibility of Apache Ant with the dependency management and conventions of Apache Maven into a more effective way to build. Powered by a Groovy DSL and packed with innovation, Gradle provides a declarative way to describe all kinds of builds through sensible defaults. Gradle is quickly becoming the build system of choice for many open source projects, leading edge enterprises and legacy automation challenges.
+
+Gradle is a build tool with a focus on build automation and support for multi-language development. If you are building, testing, publishing, and deploying software on any platform, Gradle offers a flexible model that can support the entire development lifecycle from compiling and packaging code to publishing web sites. Gradle has been designed to support build automation across multiple languages and platforms including Java, Scala, Android, C/C++, and Groovy, and is closely integrated with development tools and continuous integration servers including Eclipse, IntelliJ, and Jenkins.
+
+Learn more about what makes Gradle a compelling choice for build automation or get started with Gradle right now.
+
+This package installs using **Get-BinRoot** function which defaults to "C:\tools" if the **ChocolateyBinRoot** environment variable is not set.</description>
+    <projectUrl>http://gradle.org/</projectUrl>
+    <packageSourceUrl>https://github.com/mrdanielfsch/chocolatey-packages/blob/master/Gradle</packageSourceUrl>
+    <projectSourceUrl>https://github.com/gradle/gradle</projectSourceUrl>
+    <docsUrl>https://docs.gradle.org/2.12/userguide/userguide.html</docsUrl>
+    <tags>admin gradle java build automation management</tags>
+    <copyright>© 2016 Gradle Inc.</copyright>
+    <licenseUrl>http://www.gradle.org/license</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <iconUrl>https://upload.wikimedia.org/wikipedia/en/a/ab/Updated_logo_for_Gradle.png</iconUrl>
+    <releaseNotes>The Gradle team is pleased to bring you Gradle 2.12. This release delivers significant improvements to the new software model, together with improvements to IDE integration and continuous build.
+
+Find the complete release notes following the [link](https://docs.gradle.org/current/release-notes).</releaseNotes>
+    <dependencies>
+      <dependency id="chocolatey" version="0.9.9" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
