@@ -4,7 +4,7 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>2.12</version>
+    <version>2.13</version>
     <authors>Gradle Inc.</authors>
     <owners>Daniel Schröder</owners>
     <summary>Gradle is a modern open source polyglot build automation system. It can automate and integrate your devOps toolchain with a concise and expressive build programming language based upon the concepts of Apache Ant and Apache Maven.</summary>
@@ -18,13 +18,13 @@ This package installs using **Get-BinRoot** function which defaults to "C:\tools
     <projectUrl>http://gradle.org/</projectUrl>
     <packageSourceUrl>https://github.com/mrdanielfsch/chocolatey-packages/blob/master/Gradle</packageSourceUrl>
     <projectSourceUrl>https://github.com/gradle/gradle</projectSourceUrl>
-    <docsUrl>https://docs.gradle.org/2.12/userguide/userguide.html</docsUrl>
-    <tags>admin gradle java build automation management</tags>
+    <docsUrl>https://docs.gradle.org/2.13/userguide/userguide.html</docsUrl>
+    <tags>gradle java build automation management admin</tags>
     <copyright>© 2016 Gradle Inc.</copyright>
     <licenseUrl>http://www.gradle.org/license</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <iconUrl>https://upload.wikimedia.org/wikipedia/en/a/ab/Updated_logo_for_Gradle.png</iconUrl>
-    <releaseNotes>The Gradle team is pleased to bring you Gradle 2.12. This release delivers significant improvements to the new software model, together with improvements to IDE integration and continuous build.
+    <releaseNotes>The Gradle team is pleased to announce Gradle 2.13. This release brings significant performance improvements, more convenience for testing Gradle plugins, customization options for the Checkstyle and FindBugs reports and OpenPGP subkey support for the Signing plugin.
 
 Find the complete release notes following the [link](https://docs.gradle.org/current/release-notes).</releaseNotes>
     <dependencies>
