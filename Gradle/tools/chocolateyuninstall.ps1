@@ -1,12 +1,10 @@
-﻿$binRoot = Get-BinRoot
-
-$name = 'Gradle'
+﻿$packageName = 'gradle'
 $version = $env:chocolateyPackageVersion
 
-$extract_path = Join-Path $binRoot $name
+$installDir = Split-Path -parent $MyInvocation.MyCommand.Definition
 
-Remove-Item $extract_path -Recurse -Force
+$gradle_home = Join-Path $installDir "$packageName-$version"
+$gradle_bat = Join-Path $gradle_home 'bin/gradle.bat'
 
 Install-ChocolateyEnvironmentVariable "GRADLE_HOME" $null 'Machine'
-
-"Please manually remove Gradle ($extract_path) from the PATH environment variable."
+Uninstall-BinFile -Name 'gradle' -Path $gradle_bat
