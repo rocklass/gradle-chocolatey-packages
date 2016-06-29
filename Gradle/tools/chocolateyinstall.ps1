@@ -4,7 +4,7 @@
 [string]$minorRelease = $chocoVersion.Split('.')[2]
 if (-not $majorRelease.Equals("9") -or -not $minorRelease.Equals("9"))
 {
-    throw "This package requires Chocolatey 0.9.9 and will not work with any other version."
+    write-host "WARNING: This package has only been tested with Chocolatey 0.9.9" -f "Yellow"
 }
 
 $packageName = 'gradle'
