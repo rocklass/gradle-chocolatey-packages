@@ -27,9 +27,6 @@ Learn more about what makes Gradle a compelling choice for build automation or g
 The team is always working to improve the overall performance of Gradle, and this release does not disappoint. Gradle's configuration time has dropped considerably through the application of some careful optimizations. The Gradle build itself has seen a 50% reduction in configuration time.
 
 Find the complete release notes following the [link](https://docs.gradle.org/current/release-notes).</releaseNotes>
-    <dependencies>
-      <dependency id="chocolatey" version="0.9.9" />
-    </dependencies>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
