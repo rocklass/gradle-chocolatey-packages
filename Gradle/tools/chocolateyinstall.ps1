@@ -9,10 +9,11 @@ if (-not $majorRelease.Equals("9") -or -not $minorRelease.Equals("9"))
 
 $packageName = 'gradle'
 $version = $env:chocolateyPackageVersion
+$checksum = 'CFC61EDA71F2D12A572822644CE13D2919407595C2AEC3E3566D2AAB6F97EF39'
 $url = "https://services.gradle.org/distributions/gradle-$version-bin.zip"
 $installDir = Split-Path -parent $MyInvocation.MyCommand.Definition
 
-Install-ChocolateyZipPackage $packageName $url $installDir
+Install-ChocolateyZipPackage $packageName $url $installDir -Checksum $checksum -ChecksumType 'sha256'
 
 $gradle_home = Join-Path $installDir "$packageName-$version"
 $gradle_bat = Join-Path $gradle_home 'bin/gradle.bat'
