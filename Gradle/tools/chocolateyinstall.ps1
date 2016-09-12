@@ -9,7 +9,7 @@ if (-not $majorRelease.Equals("9") -or -not $minorRelease.Equals("9"))
 
 $packageName = 'gradle'
 $version = $env:chocolateyPackageVersion
-$checksum = 'CFC61EDA71F2D12A572822644CE13D2919407595C2AEC3E3566D2AAB6F97EF39'
+$checksum = '39C906941A474444AFBDDC38144ED44166825ACB0A57B0551DDDB04BBF157F80'
 $url = "https://services.gradle.org/distributions/gradle-$version-bin.zip"
 $installDir = Split-Path -parent $MyInvocation.MyCommand.Definition
 
