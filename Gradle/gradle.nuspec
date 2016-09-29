@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>3.0</version>
+    <version>3.1</version>
     <authors>Gradle Inc.</authors>
     <owners>Daniel Schröder</owners>
     <summary>Gradle is a modern open source polyglot build automation system. It can automate and integrate your devOps toolchain with a concise and expressive build programming language based upon the concepts of Apache Ant and Apache Maven.</summary>
@@ -16,15 +16,15 @@ Learn more about what makes Gradle a compelling choice for build automation or g
     <projectUrl>http://gradle.org/</projectUrl>
     <packageSourceUrl>https://github.com/mrdanielfsch/chocolatey-packages/blob/master/Gradle</packageSourceUrl>
     <projectSourceUrl>https://github.com/gradle/gradle</projectSourceUrl>
-    <docsUrl>https://docs.gradle.org/3.0/userguide/userguide.html</docsUrl>
+    <docsUrl>https://docs.gradle.org/3.1/userguide/userguide.html</docsUrl>
     <tags>gradle java build automation management admin</tags>
     <copyright>© 2016 Gradle Inc.</copyright>
     <licenseUrl>http://www.gradle.org/license</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <iconUrl>https://upload.wikimedia.org/wikipedia/en/a/ab/Updated_logo_for_Gradle.png</iconUrl>
-    <releaseNotes>The Gradle team is pleased to announce Gradle 3.0.
+    <releaseNotes>The Gradle team is pleased to announce Gradle 3.1.
 
-Performance continues to be a focus for the Gradle team and the third major release reflects this. The Gradle Daemon is a key performance enhancer, making builds up to 75% faster, but it needed to be explicitly enabled in previous versions of Gradle. This is no longer necessary as the Daemon is now enabled by default in 3.0.
+Multi-project builds are a powerful feature with one significant constraint: the projects have to be in the same directory hierarchy. This doesn't help if you want to work on code across multiple repositories, for example if you're trying to fix a bug in a third-party open-source library that one of your projects depends on.
 
 Find the complete release notes following the [link](https://docs.gradle.org/current/release-notes).</releaseNotes>
   </metadata>
