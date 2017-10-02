@@ -4,7 +4,7 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>4.1</version>
+    <version>4.2</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
     <summary>Gradle is a modern open source polyglot build automation system. It can automate and integrate your devOps toolchain with a concise and expressive build programming language based upon the concepts of Apache Ant and Apache Maven.</summary>
@@ -19,21 +19,27 @@ Learn more about what makes Gradle a compelling choice for build automation or g
     <licenseUrl>http://www.gradle.org/license</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <iconUrl>https://upload.wikimedia.org/wikipedia/en/a/ab/Updated_logo_for_Gradle.png</iconUrl>
-    <releaseNotes>The Gradle team is pleased to announce the release of Gradle 4.1.
+    <releaseNotes>The Gradle team is pleased to announce Gradle 4.2.
 
-First and foremost, we are excited to announce the new Worker API for Gradle plugins, which facilitates safe parallel execution. We encourage plugin authors to read the new user guide section and implement tasks using this API because it provides parallel execution by default. Core plugins will adopt this API in future releases. Furthermore, the Gradle plugin for Android 3.0 alpha has already adopted this API, so plugin developers will be in good company. More details are given below.
+First and foremost, progress has been made to improve Gradle's support for building native applications. The first outcome is parallel task execution for native compilation and linking tasks by default. This has reduced build times for native performance scenarios by as much as half.
 
-This release supports running Gradle on the most recent JDK 9 release (b170+). Read our guide to building Java 9 modules to learn how to produce and consume Java 9 modules with Gradle.
+Native apps aren't the only ones that will benefit from upgrading to Gradle 4.2. We've been working hard to ensure the build cache introduces very little overhead; builds that resolve all task outputs from the local build cache are up to 20% faster due to improvements in unpacking. Another significant performance improvement comes from zipTree and tarTree now avoiding redundant tree visitation.
 
-Steady progress has been made to make the build cache more user-friendly. Remote build cache results are mirrored locally and build cache resolution failures no longer fail the build.
+Next up, first-class support for Google Cloud Storage backed repositories! You can publish and consume using the ivy-publish and maven-publish plugins. This works similarly to our Amazon S3 support, check out the samples in the user manual.
 
-Included in this release, Gradle Kotlin DSL v0.10.3 comes with the latest Kotlin release (1.1.3), a new kotlin-dsl plugin for Gradle Plugins written in Kotlin, plus many improvements to usability, stability, and performance.
+Play framework support is upgraded in Gradle 4.2: Play v2.6, built-in Twirl template types and user-defined Twirl formats are now supported. This version of Gradle introduces new on-demand rebuild and reload for PlayRun. This is different from --continuous build and gives a more pleasant development experience for some workflows.
 
-We've also spent some time making composite builds work more like multi-project builds. Included builds are now executed in parallel by default and Gradle avoids executing included build tasks multiple times when possible. Finally, you can now use --continuous build and composite builds together.
+Gradle Kotlin DSL v0.11.1 (included in this release) brings the latest and greatest Kotlin (1.1.4-3) and takes big steps toward general usability with utilities for Groovy-heavy DSLs such as Maven POM customization, Ant usage and those provided by Groovy-based community plugins. Other improvements include better Gradle API null-safety, new samples, and improvements to the kotlin-dsl plugin.
 
-Scala enthusiasts rejoice! Scala compile and Scaladoc tasks now support Gradle's build cache. Zinc has been also upgraded to v0.3.15, which has preliminary support for compiling Scala using Java 9.
+Last but not least, if your custom plugin is using the Instantiator (most-used internal API according to BigQuery public GitHub data), please migrate to the ObjectFactory API for nested DSLs, new in Gradle 4.2.
 
-Finally, the CLI now shows more detail about tests in-progress, showing which tests are running in parallel.
+More information is available in the full release notes. We hope you will build happiness with Gradle 4.2, and we look forward to your feedback via Twitter or on GitHub.
+
+Important deprecation notices
+
+We are deprecating Gradle's RuleSource and implementing native support in the current model. Information and roadmap in our post "State and future of the Gradle Software Model".
+
+Support for running Gradle on Java 7 is deprecated and will be removed in Gradle 5.0; Java 7 reached end-of-life in April 2015. However, you will still be able to compile, test, generate Javadoc and execute applications for Java 6 and Java 7 using cross-compilation
 
 Find the complete release notes following the [link](https://docs.gradle.org/current/release-notes).</releaseNotes>
   </metadata>
