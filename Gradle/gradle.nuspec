@@ -4,7 +4,7 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>4.2</version>
+    <version>4.2.1</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
     <summary>Gradle is a modern open source polyglot build automation system. It can automate and integrate your devOps toolchain with a concise and expressive build programming language based upon the concepts of Apache Ant and Apache Maven.</summary>
@@ -19,29 +19,9 @@ Learn more about what makes Gradle a compelling choice for build automation or g
     <licenseUrl>http://www.gradle.org/license</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <iconUrl>https://upload.wikimedia.org/wikipedia/en/a/ab/Updated_logo_for_Gradle.png</iconUrl>
-    <releaseNotes>The Gradle team is pleased to announce Gradle 4.2.
+    <releaseNotes>This bug-fix release addresses a regression in 4.2, which caused Android instrumented tests to fail. It also improves Java 9 compatibility and clarifies a few deprecation warnings. We recommend that all Gradle 4.2 users upgrade to 4.2.1
 
-First and foremost, progress has been made to improve Gradle's support for building native applications. The first outcome is parallel task execution for native compilation and linking tasks by default. This has reduced build times for native performance scenarios by as much as half.
-
-Native apps aren't the only ones that will benefit from upgrading to Gradle 4.2. We've been working hard to ensure the build cache introduces very little overhead; builds that resolve all task outputs from the local build cache are up to 20% faster due to improvements in unpacking. Another significant performance improvement comes from zipTree and tarTree now avoiding redundant tree visitation.
-
-Next up, first-class support for Google Cloud Storage backed repositories! You can publish and consume using the ivy-publish and maven-publish plugins. This works similarly to our Amazon S3 support, check out the samples in the user manual.
-
-Play framework support is upgraded in Gradle 4.2: Play v2.6, built-in Twirl template types and user-defined Twirl formats are now supported. This version of Gradle introduces new on-demand rebuild and reload for PlayRun. This is different from --continuous build and gives a more pleasant development experience for some workflows.
-
-Gradle Kotlin DSL v0.11.1 (included in this release) brings the latest and greatest Kotlin (1.1.4-3) and takes big steps toward general usability with utilities for Groovy-heavy DSLs such as Maven POM customization, Ant usage and those provided by Groovy-based community plugins. Other improvements include better Gradle API null-safety, new samples, and improvements to the kotlin-dsl plugin.
-
-Last but not least, if your custom plugin is using the Instantiator (most-used internal API according to BigQuery public GitHub data), please migrate to the ObjectFactory API for nested DSLs, new in Gradle 4.2.
-
-More information is available in the full release notes. We hope you will build happiness with Gradle 4.2, and we look forward to your feedback via Twitter or on GitHub.
-
-Important deprecation notices
-
-We are deprecating Gradle's RuleSource and implementing native support in the current model. Information and roadmap in our post "State and future of the Gradle Software Model".
-
-Support for running Gradle on Java 7 is deprecated and will be removed in Gradle 5.0; Java 7 reached end-of-life in April 2015. However, you will still be able to compile, test, generate Javadoc and execute applications for Java 6 and Java 7 using cross-compilation
-
-Find the complete release notes following the [link](https://docs.gradle.org/current/release-notes).</releaseNotes>
+For the full list of fixed issues, see the [GitHub milestone](https://github.com/gradle/gradle/milestone/42?closed=1).</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
