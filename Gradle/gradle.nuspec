@@ -4,7 +4,7 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>4.2.1</version>
+    <version>4.3</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
     <summary>Gradle is a modern open source polyglot build automation system. It can automate and integrate your devOps toolchain with a concise and expressive build programming language based upon the concepts of Apache Ant and Apache Maven.</summary>
@@ -19,7 +19,7 @@ Learn more about what makes Gradle a compelling choice for build automation or g
     <licenseUrl>http://www.gradle.org/license</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <iconUrl>https://upload.wikimedia.org/wikipedia/en/a/ab/Updated_logo_for_Gradle.png</iconUrl>
-    <releaseNotes>This bug-fix release addresses a regression in 4.2, which caused Android instrumented tests to fail. It also improves Java 9 compatibility and clarifies a few deprecation warnings. We recommend that all Gradle 4.2 users upgrade to 4.2.1
+    <releaseNotes>This bug-fix release addresses a regression in 4.2, which caused Android instrumented tests to fail. It also improves Java 9 compatibility and clarifies a few deprecation warnings. We recommend that all Gradle 4.2 users upgrade to 4.3
 
 For the full list of fixed issues, see the [GitHub milestone](https://github.com/gradle/gradle/milestone/42?closed=1).</releaseNotes>
   </metadata>
