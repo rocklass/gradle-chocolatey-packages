@@ -4,7 +4,7 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>4.2.1</version>
+    <version>4.3</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
     <summary>Gradle is a modern open source polyglot build automation system. It can automate and integrate your devOps toolchain with a concise and expressive build programming language based upon the concepts of Apache Ant and Apache Maven.</summary>
@@ -19,9 +19,25 @@ Learn more about what makes Gradle a compelling choice for build automation or g
     <licenseUrl>http://www.gradle.org/license</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <iconUrl>https://upload.wikimedia.org/wikipedia/en/a/ab/Updated_logo_for_Gradle.png</iconUrl>
-    <releaseNotes>This bug-fix release addresses a regression in 4.2, which caused Android instrumented tests to fail. It also improves Java 9 compatibility and clarifies a few deprecation warnings. We recommend that all Gradle 4.2 users upgrade to 4.2.1
+    <releaseNotes>The Gradle team is pleased to announce Gradle 4.3.
 
-For the full list of fixed issues, see the [GitHub milestone](https://github.com/gradle/gradle/milestone/42?closed=1).</releaseNotes>
+First and foremost, this release of Gradle features experimental build cache support for C and C++ compilation. This further improves performance of native application builds as it does for the JVM ecosystem. Your feedback will be very helpful to make this feature stable.
+
+JVM developers who use annotation processors and the build cache should consider using a new compileJava.options.annotationProcessorGeneratedSourcesDirectory property to make caching more effective.
+
+The Gradle Kotlin DSL moves forward with a v0.12 release (included in Gradle 4.3). It brings Java 9 support, Kotlin 1.1.51, better support for Kotlin dependencies, improved documentation and samples, and more. Heads up Kotlin users: will want to ensure they declare the version of the Kotlin plugin; it no longer defaults to the embedded version.
+
+You can now use the build scan plugin without configuring it in your build. Using the --scan command line flag will automatically apply the latest compatible version of the plugin if it's not already applied.
+
+Several improvements have been made to improve user experience, increase robustness in the face of network problems, and solidify existing APIs.
+
+- Gradle now defines connection and socket timeouts for all HTTP(S) requests. This prevents certain types of network problems from hanging builds, and is especially helpful for build cache users. Furthermore, Gradle will blacklist remote repositories for the duration of a build where requests time out.
+- The plugins {} DSL can now be used in more cases. Subprojects can now apply plugins declared in buildSrc and non-core plugins already declared in parent projects.
+- The runtime task inputs API (what you'd typically see in a Gradle script instead of a binary plugin) is now more consistent with the statically-compiled API. Specifically, Gradle now creates directories for output properties, validates inputs and outputs, and allows classpath property declaration similar to when using annotations.
+- A new console verbose mode will print outcomes of all tasks (like UP-TO-DATE) like Gradle 3.5 and earlier did. You can set this via --console=verbose or by a new Gradle property org.gradle.console=(plain rich verbose). Furthermore, all boolean flags like --parallel now have inverses like --no-parallel to make for a more consistent CLI.
+- Last but not least, new task output DirectoryProperty and RegularFileProperty types carry generating task information that allow Gradle to infer task dependencies. Use these types in your custom tasks instead of Files.
+
+We hope you will build happiness with Gradle 4.3, and we look forward to your feedback [via Twitter](https://twitter.com/gradle) or on [GitHub](https://github.com/gradle).</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
