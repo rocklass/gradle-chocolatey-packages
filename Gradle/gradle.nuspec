@@ -4,7 +4,7 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>4.4</version>
+    <version>4.4.1</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
     <summary>Gradle is a modern open source polyglot build automation system. It can automate and integrate your devOps toolchain with a concise and expressive build programming language based upon the concepts of Apache Ant and Apache Maven.</summary>
@@ -19,26 +19,15 @@ Learn more about what makes Gradle a compelling choice for build automation or g
     <licenseUrl>http://www.gradle.org/license</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <iconUrl>https://upload.wikimedia.org/wikipedia/en/a/ab/Updated_logo_for_Gradle.png</iconUrl>
-    <releaseNotes>The Gradle team is pleased to announce Gradle 4.4.
+    <releaseNotes>This bug-fix release addresses 3 regressions in Gradle 4.4.
 
-First and foremost, this release of Gradle features some exciting improvements for IDE users:
+We started shipping JGit 4.5.3.201708160445-r in Gradle 4.4. Some of the non-shaded JGit resources leaked into the gradleApi() dependency and [caused problems](https://github.com/gradle/gradle/issues/3780) in some builds. We now shade all of JGit's resources.
 
-- [Visual Studio 2017 is now supported](https://docs.gradle.org/4.4/release-notes.html#visual-studio-2017-support). Please read details about vswhere and [VS toolchain discovery changes](https://docs.gradle.org/4.4/release-notes.html#changes-to-visual-studio-toolchain-discovery) if you plan to use Gradle with VS 2017.
-- The eclipse plugin now provides separate output folders. This allows Eclipse plugins to provide more sophisticated classpath management. [Buildship 2.2](https://projects.eclipse.org/projects/tools.buildship/reviews/2.2.0-release-review) will take advantage of this feature to avoid one large global classpath when running Java applications or executing tests in Eclipse IDE.
+Some builds using [Kotlin DSL](https://github.com/gradle/kotlin-dsl) had problems [applying the build-scan plugin](https://github.com/gradle/gradle/issues/3759) in Gradle 4.4. We've updated to [kotlin-dsl 0.13.2](https://github.com/gradle/kotlin-dsl/releases/tag/v0.13.2).
 
-No discussion about IDE support for Gradle would be complete without mentioning improvements to the Kotlin DSL. Version 0.13 is included in Gradle 4.4 and provides support for writing settings.gradle.kts files, Kotlin standard library extensions to the Java 7 and Java 8 APIs for use in build scripts, improvements to the plugins {} DSL, and more! See the [Kotlin DSL 0.13 release notes](https://github.com/gradle/kotlin-dsl/releases/tag/v0.13.1) for more details.
+Gradle 4.4 contained changes to internal APIs that broke the popular [Nebula dependency lock plugin](https://github.com/gradle/gradle/issues/3798). This release restores binary compatibility for that plugin. Internal APIs are subject to change, although we try to be mindful of the impact of every change in each Gradle release. If particular internal APIs are useful, please [open an issue](https://github.com/gradle/gradle/issues) describing your use case, so we can judge where our public APIs are lacking.
 
-This version of Gradle supports version ranges in parent elements of a POM. You can see an [example below](https://docs.gradle.org/4.4/release-notes.html#support-version-ranges-in-parent-elements).
-
-C and C++ developers will enjoy better [incremental builds and build cache support for C/C++](https://docs.gradle.org/4.4/release-notes.html#c/c++-incremental-build-improvements) because this version of Gradle takes compiler version and system headers into account for up-to-date checks.
-
-This version of Gradle fully supports the combination of Play 2.6 and Scala 2.12, with improvements and fixes to runPlayBinary, the distributed Play start script, and [other improvements](https://docs.gradle.org/4.4/release-notes.html#improved-play-2.6-support).
-
-Previous versions of Gradle required that all transitive dependencies of a given plugin were present in the same repository as the plugin. Gradle 4.4 takes all plugin repositories into account and can resolve transitive plugin dependencies across them. Learn about this and other plugin repository handling improvements [in the details](https://docs.gradle.org/4.4/release-notes.html#plugin-repositories-enhancements).
-
-Last but not least, [several 3rd party dependencies](https://docs.gradle.org/4.4/release-notes.html#upgrade-of-third-party-dependencies) including Ant were updated to their latest versions containing security and other bug fixes.
-
-We hope you will build happiness with Gradle 4.4, and we look forward to your feedback [via Twitter](https://twitter.com/gradle) or on [GitHub](https://github.com/gradle).</releaseNotes>
+For the full list of fixed issues, see the [4.4.1 GitHub milestone](https://github.com/gradle/gradle/milestone/56?closed=1).</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
