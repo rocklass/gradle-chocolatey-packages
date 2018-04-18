@@ -4,7 +4,7 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>4.5</version>
+    <version>4.6</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
     <summary>Gradle is a modern open source polyglot build automation system. It can automate and integrate your devOps toolchain with a concise and expressive build programming language based upon the concepts of Apache Ant and Apache Maven.</summary>
@@ -19,30 +19,37 @@ Learn more about what makes Gradle a compelling choice for build automation or g
     <licenseUrl>http://www.gradle.org/license</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <iconUrl>https://upload.wikimedia.org/wikipedia/en/a/ab/Updated_logo_for_Gradle.png</iconUrl>
-    <releaseNotes>The Gradle team is pleased to announce Gradle 4.5.
+    <releaseNotes>The Gradle team is pleased to announce Gradle 4.6.
 
-First and foremost, this release of Gradle features improvements to the build cache:
+First and foremost, this release of Gradle includes built-in support for JUnit Platform and the JUnit Jupiter/Vintage Engine, also known as [JUnit 5 support](https://docs.gradle.org/4.6/release-notes.html#junit-5-support).
+You can use the new filtering and engines functionality in JUnit 5 using the examples provided below and in the documentation.
 
-- Caching for C and C++ compilation is now stable.
-- The ANTLR plugin now [takes advantage of the build cache](https://docs.gradle.org/4.5/release-notes.html#antlr-task-is-now-cacheable-by-default).
-- A couple of rough edges to build cache behavior have been polished, [read more in the detailed release notes](https://docs.gradle.org/4.5/release-notes.html#build-cache).
+Thank you to the [JUnit team](https://github.com/orgs/junit-team/people) for helping to achieve JUnit Platform support, and a special thank you to [Andrew Oberstar](https://github.com/ajoberstar) for extraordinary contributions toward this effort.
 
-In addition to cacheability improvements for native development, incremental compilation for C/C++ does finer-grained analysis of dependencies between source files and header files, which will result in fewer files compiled and a higher cache hit-rate. Read [details about C and C++ compilation improvements here](https://docs.gradle.org/4.5/release-notes.html#c/c++-compilation-improvements).
+Also regarding testing, you can now improve your testing feedback loop when running JVM-based tests using the [new fail-fast option for Test tasks](https://docs.gradle.org/4.6/release-notes.html#fail-fast-option-for-test-tasks), which stops the build immediately after the first test failure.
 
-Now on to performance improvements everyone can enjoy: less memory consumption and faster up-to-date behavior. Gradle 4.5 features much more memory-efficient incremental compilation. Combined with less file canonicalization, faster task selection, and faster variant-aware dependency resolution, this results in up to 30% faster up-to-date checking. The improvement will be especially pronounced for projects with a large number of constants, as is typical in Android projects. For example, here are 2 snapshots comparing cross-build caches.
+// Example JUnit 5 and fail-fast test configuration
+test {
+    useJUnitPlatform {
+        excludeTags 'slow'
+        includeEngines 'junit-jupiter', 'junit-vintage'
+    }
 
-Next up, you can finally [sign artifacts using gnupg-agent](https://docs.gradle.org/4.5/release-notes.html#signing-artifacts-with-gpg-agent). Special thanks to [Christoph Böhme](https://github.com/cboehme) for contributing this highly-anticipated feature.
+    failFast = true
+}
 
-Documentation has been upgraded in this release, with use-case oriented examples for several highly trafficked pages, improved navigation, and a more pleasant experience in many ways. [Read details about the improvements](https://docs.gradle.org/4.5/release-notes.html#documentation-enhancements), or just start with the new [docs home page](https://docs.gradle.org/4.5/userguide/userguide.html).
+Moving on to dependency management improvements: you can now [declare dependency constraints for transitive dependencies](https://docs.gradle.org/4.6/release-notes.html#dependency-constraints-for-transitive-dependencies) and avoid problems caused by oft-hidden upstream dependency changes.
 
-Individual deprecation warnings are no longer displayed in console output by default, as many users often cannot take action on deprecation warnings from third party plugins. You can now [control the verbosity of logging deprecation warnings](https://docs.gradle.org/4.5/release-notes.html#reduced-deprecation-logging-in-console).
+This release also features enhanced Maven dependency compatibility: support for [importing BOMs](https://docs.gradle.org/4.6/release-notes.html#bom-import), [optional dependencies](https://docs.gradle.org/4.6/release-notes.html#support-for-optional-dependencies-in-pom-consumption), and [compile/runtime separation when consuming POMs](https://docs.gradle.org/4.6/release-notes.html#compile/runtime-scope-separation-in-pom-consumption).
+For now you must enable these features by adding enableFeaturePreview('IMPROVED_POM_SUPPORT') to your settings.gradle file, as they break backward compatibility in some cases.
 
-Last but not least, 2 Kotlin DSL updates:
+This version of Gradle also comes with a couple especially useful new APIs for task development. You can now [declare custom command-line flags for your custom tasks](https://docs.gradle.org/4.6/release-notes.html#tasks-api-allows-custom-command-line-options), for example: gradle myCustomTask --myfoo=bar. In addition, [tasks that extend Test, JavaExec or Exec can declare rich arguments](https://docs.gradle.org/4.6/release-notes.html#rich-command-line-arguments-for-test,-javaexec-or-exec-tasks) for invoking the underlying executable. This allows for better modeling of tools like annotation processors.
 
--You can now [generate Gradle Kotlin DSL scripts](https://docs.gradle.org/4.5/release-notes.html#init-task-can-now-generate-kotlin-dsl-build-scripts) using gradle init --dsl kotlin.
--[Kotlin DSL v0.14](https://github.com/gradle/kotlin-dsl/releases/tag/v0.14.0) is included in this release of Gradle. It features code navigation to Gradle sources in IDEs with the Gradle binary distribution (not just -all anymore), embedded Kotlin upgraded to 1.2.0 and more.
+Speaking of annotation processors, it is now more convenient to declare dependencies that are annotation processors through the [new annotationProcessor dependency configuration](https://docs.gradle.org/4.6/release-notes.html#convenient-declaration-of-annotation-processor-dependencies). Using a separate dependency configuration for annotation processors is a best practice for improving performance.
 
-We hope you will build happiness with Gradle 4.5, and we look forward to your feedback via [Twitter](https://twitter.com/gradle) or on [GitHub](https://github.com/gradle).</releaseNotes>
+[Kotlin DSL v0.15.6](https://github.com/gradle/kotlin-dsl/releases/tag/v0.15.6) is included in this release of Gradle, and features initialization scripts support, nicer script compilation error reporting, performance improvements, and better IntelliJ IDEA integration. Details are available in the linked release notes.
+
+We hope you will build happiness with Gradle 4.6, and we look forward to your feedback via [Twitter](https://twitter.com/gradle) or on [GitHub](https://github.com/gradle).</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
