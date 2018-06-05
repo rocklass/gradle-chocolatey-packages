@@ -4,7 +4,7 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>4.6</version>
+    <version>4.8</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
     <summary>Gradle is a modern open source polyglot build automation system. It can automate and integrate your devOps toolchain with a concise and expressive build programming language based upon the concepts of Apache Ant and Apache Maven.</summary>
@@ -19,37 +19,33 @@ Learn more about what makes Gradle a compelling choice for build automation or g
     <licenseUrl>http://www.gradle.org/license</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <iconUrl>https://upload.wikimedia.org/wikipedia/en/a/ab/Updated_logo_for_Gradle.png</iconUrl>
-    <releaseNotes>The Gradle team is pleased to announce Gradle 4.6.
+    <releaseNotes>The Gradle team is pleased to announce Gradle 4.8.
 
-First and foremost, this release of Gradle includes built-in support for JUnit Platform and the JUnit Jupiter/Vintage Engine, also known as [JUnit 5 support](https://docs.gradle.org/4.6/release-notes.html#junit-5-support).
-You can use the new filtering and engines functionality in JUnit 5 using the examples provided below and in the documentation.
+First and foremost, this release of Gradle features [dependency locking](https://docs.gradle.org/4.8/release-notes#locking-of-dynamic-dependencies): a mechanism for locking dependency versions which allows builds to become reproducible in the face of dynamic versions or version ranges.
+Read the [user manual chapter on dependency locking](https://docs.gradle.org/4.8/userguide/dependency_locking.html) to learn how to take advantage of this exciting new feature.
 
-Thank you to the [JUnit team](https://github.com/orgs/junit-team/people) for helping to achieve JUnit Platform support, and a special thank you to [Andrew Oberstar](https://github.com/ajoberstar) for extraordinary contributions toward this effort.
+The publishing plugins get some highly-anticipated improvements in this release:
 
-Also regarding testing, you can now improve your testing feedback loop when running JVM-based tests using the [new fail-fast option for Test tasks](https://docs.gradle.org/4.6/release-notes.html#fail-fast-option-for-test-tasks), which stops the build immediately after the first test failure.
+- The Signing Plugin now supports [signing all artifacts of a publication](https://docs.gradle.org/4.8/release-notes#signing-publications).
+- The Maven Publish Plugin now provides a dedicated, type-safe [DSL to customize the POM generated](https://docs.gradle.org/4.8/release-notes#customizing-the-generated-pom) as part of a Maven publication.
+- The Ivy Publish Plugin now provides a dedicated, type-safe [DSL to customize the Ivy module descriptor generated](https://docs.gradle.org/4.8/release-notes#customizing-the-generated-ivy-module-descriptor) as part of an Ivy publication.
+- Configuration-wide [dependency excludes are now published](https://docs.gradle.org/4.8/release-notes#configuration-wide-dependency-excludes-are-now-published)
 
-// Example JUnit 5 and fail-fast test configuration
-test {
-    useJUnitPlatform {
-        excludeTags 'slow'
-        includeEngines 'junit-jupiter', 'junit-vintage'
-    }
+The maven-publish and ivy-publish plugins are now considered stable and use of the maven plugin is discouraged as it will eventually be deprecated — please migrate.
 
-    failFast = true
-}
+User experience for [incremental annotation processing is improved](https://docs.gradle.org/4.8/release-notes#improved-incremental-annotation-processing).
+Compilation will no longer fail when a processor does something that Gradle detects will not work incrementally.
+Unused non-incremental processors no longer prevent incremental compilation.
+Finally, annotation processors are now able to decide dynamically if they are incremental or not.
+This allows processors with extension mechanisms to check extensions for incrementality before enabling incremental annotation processing.
 
-Moving on to dependency management improvements: you can now [declare dependency constraints for transitive dependencies](https://docs.gradle.org/4.6/release-notes.html#dependency-constraints-for-transitive-dependencies) and avoid problems caused by oft-hidden upstream dependency changes.
+New native plugins continue to improve with [better control over system include path](https://docs.gradle.org/4.8/release-notes#better-control-over-system-include-path-for-native-compilation) for native compilation and [other improvements](https://github.com/gradle/gradle-native/blob/master/docs/RELEASE-NOTES.md#changes-included-in-gradle-48).
 
-This release also features enhanced Maven dependency compatibility: support for [importing BOMs](https://docs.gradle.org/4.6/release-notes.html#bom-import), [optional dependencies](https://docs.gradle.org/4.6/release-notes.html#support-for-optional-dependencies-in-pom-consumption), and [compile/runtime separation when consuming POMs](https://docs.gradle.org/4.6/release-notes.html#compile/runtime-scope-separation-in-pom-consumption).
-For now you must enable these features by adding enableFeaturePreview('IMPROVED_POM_SUPPORT') to your settings.gradle file, as they break backward compatibility in some cases.
+Gradle 4.8 includes Kotlin DSL 0.17.5, bringing the latest Kotlin 1.2.41 release and many improvements to the user experience including location aware runtime error reporting, convenient configuration of nested extensions, faster and leaner configuration time, and TestKit support.
+At the same time the IntelliJ IDEA Kotlin Plugin fixed many long standing build script editing related issues.
+See details and examples in the [Kotlin DSL v0.17 release notes](https://github.com/gradle/kotlin-dsl/releases/tag/v0.17.5).
 
-This version of Gradle also comes with a couple especially useful new APIs for task development. You can now [declare custom command-line flags for your custom tasks](https://docs.gradle.org/4.6/release-notes.html#tasks-api-allows-custom-command-line-options), for example: gradle myCustomTask --myfoo=bar. In addition, [tasks that extend Test, JavaExec or Exec can declare rich arguments](https://docs.gradle.org/4.6/release-notes.html#rich-command-line-arguments-for-test,-javaexec-or-exec-tasks) for invoking the underlying executable. This allows for better modeling of tools like annotation processors.
-
-Speaking of annotation processors, it is now more convenient to declare dependencies that are annotation processors through the [new annotationProcessor dependency configuration](https://docs.gradle.org/4.6/release-notes.html#convenient-declaration-of-annotation-processor-dependencies). Using a separate dependency configuration for annotation processors is a best practice for improving performance.
-
-[Kotlin DSL v0.15.6](https://github.com/gradle/kotlin-dsl/releases/tag/v0.15.6) is included in this release of Gradle, and features initialization scripts support, nicer script compilation error reporting, performance improvements, and better IntelliJ IDEA integration. Details are available in the linked release notes.
-
-We hope you will build happiness with Gradle 4.6, and we look forward to your feedback via [Twitter](https://twitter.com/gradle) or on [GitHub](https://github.com/gradle).</releaseNotes>
+We hope you will build happiness with Gradle 4.8, and we look forward to your feedback [via Twitter](https://twitter.com/gradle) or on [GitHub](https://github.com/gradle).</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
