@@ -4,7 +4,7 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>4.8</version>
+    <version>4.8.1</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
     <summary>Gradle is a modern open source polyglot build automation system. It can automate and integrate your devOps toolchain with a concise and expressive build programming language based upon the concepts of Apache Ant and Apache Maven.</summary>
@@ -19,33 +19,19 @@ Learn more about what makes Gradle a compelling choice for build automation or g
     <licenseUrl>http://www.gradle.org/license</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <iconUrl>https://upload.wikimedia.org/wikipedia/en/a/ab/Updated_logo_for_Gradle.png</iconUrl>
-    <releaseNotes>The Gradle team is pleased to announce Gradle 4.8.
+    <docsUrl>https://docs.gradle.org/current/userguide/userguide.html</docsUrl>
+    <mailingListUrl>https://discuss.gradle.org/</mailingListUrl>
+    <bugTrackerUrl>https://github.com/gradle/gradle/issues</bugTrackerUrl>
+    <projectSourceUrl>https://github.com/gradle/gradle</projectSourceUrl>
+    <packageSourceUrl>https://github.com/rocklass/gradle-chocolatey-packages</packageSourceUrl>
+    <releaseNotes>This bug-fix release addresses 6 regressions in Gradle 4.8:
 
-First and foremost, this release of Gradle features [dependency locking](https://docs.gradle.org/4.8/release-notes#locking-of-dynamic-dependencies): a mechanism for locking dependency versions which allows builds to become reproducible in the face of dynamic versions or version ranges.
-Read the [user manual chapter on dependency locking](https://docs.gradle.org/4.8/userguide/dependency_locking.html) to learn how to take advantage of this exciting new feature.
-
-The publishing plugins get some highly-anticipated improvements in this release:
-
-- The Signing Plugin now supports [signing all artifacts of a publication](https://docs.gradle.org/4.8/release-notes#signing-publications).
-- The Maven Publish Plugin now provides a dedicated, type-safe [DSL to customize the POM generated](https://docs.gradle.org/4.8/release-notes#customizing-the-generated-pom) as part of a Maven publication.
-- The Ivy Publish Plugin now provides a dedicated, type-safe [DSL to customize the Ivy module descriptor generated](https://docs.gradle.org/4.8/release-notes#customizing-the-generated-ivy-module-descriptor) as part of an Ivy publication.
-- Configuration-wide [dependency excludes are now published](https://docs.gradle.org/4.8/release-notes#configuration-wide-dependency-excludes-are-now-published)
-
-The maven-publish and ivy-publish plugins are now considered stable and use of the maven plugin is discouraged as it will eventually be deprecated — please migrate.
-
-User experience for [incremental annotation processing is improved](https://docs.gradle.org/4.8/release-notes#improved-incremental-annotation-processing).
-Compilation will no longer fail when a processor does something that Gradle detects will not work incrementally.
-Unused non-incremental processors no longer prevent incremental compilation.
-Finally, annotation processors are now able to decide dynamically if they are incremental or not.
-This allows processors with extension mechanisms to check extensions for incrementality before enabling incremental annotation processing.
-
-New native plugins continue to improve with [better control over system include path](https://docs.gradle.org/4.8/release-notes#better-control-over-system-include-path-for-native-compilation) for native compilation and [other improvements](https://github.com/gradle/gradle-native/blob/master/docs/RELEASE-NOTES.md#changes-included-in-gradle-48).
-
-Gradle 4.8 includes Kotlin DSL 0.17.5, bringing the latest Kotlin 1.2.41 release and many improvements to the user experience including location aware runtime error reporting, convenient configuration of nested extensions, faster and leaner configuration time, and TestKit support.
-At the same time the IntelliJ IDEA Kotlin Plugin fixed many long standing build script editing related issues.
-See details and examples in the [Kotlin DSL v0.17 release notes](https://github.com/gradle/kotlin-dsl/releases/tag/v0.17.5).
-
-We hope you will build happiness with Gradle 4.8, and we look forward to your feedback [via Twitter](https://twitter.com/gradle) or on [GitHub](https://github.com/gradle).</releaseNotes>
+[#5740](https://github.com/gradle/gradle/issues/5740): Maven Central dropped support for older TLS implementations. This makes the dependency resolution fail if the Gradle build runs on JDK 7.
+[#5701](https://github.com/gradle/gradle/pull/5701): Gradle 4.8 broke compatibility with the artifactory and bintray publishing plugins.
+[#5708](https://github.com/gradle/gradle/issues/5708): Gradle 4.8 sometimes fails with ConcurrentModificationException when project.tasks.withType() is used.
+[#5729](https://github.com/gradle/gradle/pull/5729): The dependency resolution engine sometimes fails with "Unexpected parent dependency" message, which became more apparent in Gradle 4.8.
+[#5722](https://github.com/gradle/gradle/issues/5722): Gradle 4.8 broke the ability of the SourceSet to override the compile tasks' destination directory.
+[#5692](https://github.com/gradle/gradle/issues/5692): Gradle 4.8 doesn't consider versions equal when using dependencySubstitution and failOnVersionConflict.</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
