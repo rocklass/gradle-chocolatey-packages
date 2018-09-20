@@ -4,7 +4,7 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>4.10</version>
+    <version>4.10.1</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
     <summary>Gradle is a modern open source polyglot build automation system. It can automate and integrate your devOps toolchain with a concise and expressive build programming language based upon the concepts of Apache Ant and Apache Maven.</summary>
@@ -24,27 +24,14 @@ Learn more about what makes Gradle a compelling choice for build automation or g
     <bugTrackerUrl>https://github.com/gradle/gradle/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/gradle/gradle</projectSourceUrl>
     <packageSourceUrl>https://github.com/rocklass/gradle-chocolatey-packages</packageSourceUrl>
-    <releaseNotes>The Gradle team is pleased to announce Gradle 4.10. This is a big release.
-
-First and foremost, this release of Gradle features an improved [incremental Java compiler, now enabled by default](https://docs.gradle.org/4.10/release-notes.html#incremental-java-compilation-by-default).
-This will result in significantly reduced Java compilation time in subsequent builds when outputs are not up-to-date or resolved from the build cache.
-
-Chances are caches in those .gradle/ directories have accumulated a few (or a few dozen) gigabytes over time.
-If so, you'll be relieved to know that Gradle will now [periodically clean up unused /caches](https://docs.gradle.org/4.10/release-notes.html#periodic-cache-cleanup) under GRADLE_USER_HOME and project root directories.
-
-A moment you have anticipated is nearly here, as the [Kotlin DSL reaches version 1.0 RC3](https://github.com/gradle/kotlin-dsl/releases/tag/v1.0-RC3).
-Configuration avoidance, buildSrc refactoring propagation to the IDE, and lots of DSL polish make this the release to try.
-Gradle Kotlin DSL 1.0 will ship with the next version of Gradle, 5.0.
-Read [this blog post](https://blog.gradle.org/gradle-kotlin-dsl-release-candidate) for guidance on trying the Kotlin DSL and submitting feedback.
-
-You can now use [SNAPSHOT plugin versions with the plugins {}](https://docs.gradle.org/4.10/release-notes.html#use-snapshot-plugin-versions-with-the-plugins-%7B%7D-block) and pluginManagement {} blocks.
-This is especially good news for Kotlin DSL users, who will get code assistance and auto-completion for these SNAPSHOT plugins.
-Special thanks to [Sébastien Deleuze](https://github.com/sdeleuze) for contributing.
-
-Last but not least, [included builds can now be nested](https://docs.gradle.org/4.10/release-notes.html#nested-included-builds).
-This makes some common workflows more convenient, such as working on multiple source repositories at the same time to implement a cross-cutting feature.
-
-We hope you will build happiness with Gradle 4.10, and we look forward to your feedback [via Twitter](https://twitter.com/gradle) or [on GitHub](https://github.com/gradle).</releaseNotes>
+    <releaseNotes>This bug-fix release addresses 6 regressions in Gradle 4.10:
+[#6656](https://github.com/gradle/gradle/issues/6656): FileTreeElement.getPath() returns absolute system dependent filepath.
+[#6592](https://github.com/gradle/gradle/issues/6592): Up-to-date checks for missing files can be incorrect
+[#6612](https://github.com/gradle/gradle/issues/6612): Gradle fails when no incremental compile snapshot data available.
+[#6582](https://github.com/gradle/gradle/issues/6582): Gradle 4.10 incorrect ordering between dependencies of dependent tasks.
+[#6558](https://github.com/gradle/gradle/issues/6558): tasks.withType(ScalaCompile::class.java).configureEach fails on multi-project builds.
+[#6653](https://github.com/gradle/gradle/issues/6653): Double deprecation message when using publishing plugin.
+In addition, the Gradle Kotlin DSL has been updated to 1.0 RC6, see the [release notes](https://github.com/gradle/kotlin-dsl/releases/tag/v1.0-RC6) for the list of included fixes.</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
