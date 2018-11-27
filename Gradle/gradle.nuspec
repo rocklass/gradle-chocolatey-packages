@@ -4,7 +4,7 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>4.10.1</version>
+    <version>5.0</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
     <summary>Gradle is a modern open source polyglot build automation system. It can automate and integrate your devOps toolchain with a concise and expressive build programming language based upon the concepts of Apache Ant and Apache Maven.</summary>
@@ -15,7 +15,7 @@ Gradle is a build tool with a focus on build automation and support for multi-la
 Learn more about what makes Gradle a compelling choice for build automation or get started with Gradle right now.</description>
     <projectUrl>http://gradle.org/</projectUrl>
     <tags>gradle java build automation management admin</tags>
-    <copyright>© 2017 Gradle Inc.</copyright>
+    <copyright>© 2018 Gradle Inc.</copyright>
     <licenseUrl>http://www.gradle.org/license</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <iconUrl>https://raw.githubusercontent.com/gradle/gradle/master/gradle.png</iconUrl>
@@ -24,14 +24,15 @@ Learn more about what makes Gradle a compelling choice for build automation or g
     <bugTrackerUrl>https://github.com/gradle/gradle/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/gradle/gradle</projectSourceUrl>
     <packageSourceUrl>https://github.com/rocklass/gradle-chocolatey-packages</packageSourceUrl>
-    <releaseNotes>This bug-fix release addresses 6 regressions in Gradle 4.10:
-[#6656](https://github.com/gradle/gradle/issues/6656): FileTreeElement.getPath() returns absolute system dependent filepath.
-[#6592](https://github.com/gradle/gradle/issues/6592): Up-to-date checks for missing files can be incorrect
-[#6612](https://github.com/gradle/gradle/issues/6612): Gradle fails when no incremental compile snapshot data available.
-[#6582](https://github.com/gradle/gradle/issues/6582): Gradle 4.10 incorrect ordering between dependencies of dependent tasks.
-[#6558](https://github.com/gradle/gradle/issues/6558): tasks.withType(ScalaCompile::class.java).configureEach fails on multi-project builds.
-[#6653](https://github.com/gradle/gradle/issues/6653): Double deprecation message when using publishing plugin.
-In addition, the Gradle Kotlin DSL has been updated to 1.0 RC6, see the [release notes](https://github.com/gradle/kotlin-dsl/releases/tag/v1.0-RC6) for the list of included fixes.</releaseNotes>
+    <releaseNotes>The Gradle team is excited to announce Gradle 5.0.
+
+This release features [a production-ready Kotlin DSL](https://github.com/gradle/gradle/releases#kotlin-dsl-1.0), [dependency version alignment](https://github.com/gradle/gradle/releases#dependency-version-alignment) (similar to and usable with Maven BOMs), [task timeouts](https://github.com/gradle/gradle/releases#task-timeouts), [Java 11 support](https://github.com/gradle/gradle/releases#java-11-runtime-support), and more.
+
+These release notes list what's new since Gradle 4.10. You can review the [highlights since Gradle 4.0 here](https://gradle.org/whats-new/gradle-5).
+
+Read the [Gradle 5.0 upgrade guide](https://docs.gradle.org/5.0/userguide/upgrading_version_4.html) to learn about breaking changes and considerations for upgrading from Gradle 4.x.
+
+We would like to thank the following community contributors to this release of Gradle: [Jean-Baptiste Nizet](https://github.com/jnizet), [Jonathan Leitschuh](https://github.com/JLLeitschuh), [Ben McCann](https://github.com/benmccann), [Björn Kautler](https://github.com/Vampire), [Georg Friedrich](https://github.com/GFriedrich), [Stefan M.](https://github.com/StefMa), [Xiang Li](https://github.com/lixiangconan), [Theodore Ni](https://github.com/tjni), [James Justinic](https://github.com/jjustinic), [Mike Kobit](https://github.com/mkobit), [Alex Saveau](https://github.com/SUPERCILEX), [Kevin Macksamie](https://github.com/k-mack), [Cliffred van Velzen](https://github.com/cliffred), [Artem Zinnatullin](https://github.com/artem-zinnatullin), [Jakub Strzyżewski](https://github.com/shindouj), [Martin Dünkelmann](https://github.com/MartinX3), [Thad House](https://github.com/ThadHouse), [Dan Sanduleac](https://github.com/dansanduleac), [Felipe Lima](https://github.com/felipecsl), and [thc202](https://github.com/thc202).</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
