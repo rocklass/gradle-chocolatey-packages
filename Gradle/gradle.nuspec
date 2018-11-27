@@ -4,7 +4,7 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>4.8.1</version>
+    <version>5.0</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
     <summary>Gradle is a modern open source polyglot build automation system. It can automate and integrate your devOps toolchain with a concise and expressive build programming language based upon the concepts of Apache Ant and Apache Maven.</summary>
@@ -15,23 +15,24 @@ Gradle is a build tool with a focus on build automation and support for multi-la
 Learn more about what makes Gradle a compelling choice for build automation or get started with Gradle right now.</description>
     <projectUrl>http://gradle.org/</projectUrl>
     <tags>gradle java build automation management admin</tags>
-    <copyright>© 2017 Gradle Inc.</copyright>
+    <copyright>© 2018 Gradle Inc.</copyright>
     <licenseUrl>http://www.gradle.org/license</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <iconUrl>https://upload.wikimedia.org/wikipedia/en/a/ab/Updated_logo_for_Gradle.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/gradle/gradle/master/gradle.png</iconUrl>
     <docsUrl>https://docs.gradle.org/current/userguide/userguide.html</docsUrl>
     <mailingListUrl>https://discuss.gradle.org/</mailingListUrl>
     <bugTrackerUrl>https://github.com/gradle/gradle/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/gradle/gradle</projectSourceUrl>
     <packageSourceUrl>https://github.com/rocklass/gradle-chocolatey-packages</packageSourceUrl>
-    <releaseNotes>This bug-fix release addresses 6 regressions in Gradle 4.8:
+    <releaseNotes>The Gradle team is excited to announce Gradle 5.0.
 
-[#5740](https://github.com/gradle/gradle/issues/5740): Maven Central dropped support for older TLS implementations. This makes the dependency resolution fail if the Gradle build runs on JDK 7.
-[#5701](https://github.com/gradle/gradle/pull/5701): Gradle 4.8 broke compatibility with the artifactory and bintray publishing plugins.
-[#5708](https://github.com/gradle/gradle/issues/5708): Gradle 4.8 sometimes fails with ConcurrentModificationException when project.tasks.withType() is used.
-[#5729](https://github.com/gradle/gradle/pull/5729): The dependency resolution engine sometimes fails with "Unexpected parent dependency" message, which became more apparent in Gradle 4.8.
-[#5722](https://github.com/gradle/gradle/issues/5722): Gradle 4.8 broke the ability of the SourceSet to override the compile tasks' destination directory.
-[#5692](https://github.com/gradle/gradle/issues/5692): Gradle 4.8 doesn't consider versions equal when using dependencySubstitution and failOnVersionConflict.</releaseNotes>
+This release features [a production-ready Kotlin DSL](https://github.com/gradle/gradle/releases#kotlin-dsl-1.0), [dependency version alignment](https://github.com/gradle/gradle/releases#dependency-version-alignment) (similar to and usable with Maven BOMs), [task timeouts](https://github.com/gradle/gradle/releases#task-timeouts), [Java 11 support](https://github.com/gradle/gradle/releases#java-11-runtime-support), and more.
+
+These release notes list what's new since Gradle 4.10. You can review the [highlights since Gradle 4.0 here](https://gradle.org/whats-new/gradle-5).
+
+Read the [Gradle 5.0 upgrade guide](https://docs.gradle.org/5.0/userguide/upgrading_version_4.html) to learn about breaking changes and considerations for upgrading from Gradle 4.x.
+
+We would like to thank the following community contributors to this release of Gradle: [Jean-Baptiste Nizet](https://github.com/jnizet), [Jonathan Leitschuh](https://github.com/JLLeitschuh), [Ben McCann](https://github.com/benmccann), [Björn Kautler](https://github.com/Vampire), [Georg Friedrich](https://github.com/GFriedrich), [Stefan M.](https://github.com/StefMa), [Xiang Li](https://github.com/lixiangconan), [Theodore Ni](https://github.com/tjni), [James Justinic](https://github.com/jjustinic), [Mike Kobit](https://github.com/mkobit), [Alex Saveau](https://github.com/SUPERCILEX), [Kevin Macksamie](https://github.com/k-mack), [Cliffred van Velzen](https://github.com/cliffred), [Artem Zinnatullin](https://github.com/artem-zinnatullin), [Jakub Strzyżewski](https://github.com/shindouj), [Martin Dünkelmann](https://github.com/MartinX3), [Thad House](https://github.com/ThadHouse), [Dan Sanduleac](https://github.com/dansanduleac), [Felipe Lima](https://github.com/felipecsl), and [thc202](https://github.com/thc202).</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
