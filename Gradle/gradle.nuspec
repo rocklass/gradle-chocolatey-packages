@@ -4,7 +4,7 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>4.10.3</version>
+    <version>5.1</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
     <summary>Gradle is a modern open source polyglot build automation system. It can automate and integrate your devOps toolchain with a concise and expressive build programming language based upon the concepts of Apache Ant and Apache Maven.</summary>
@@ -15,7 +15,7 @@ Gradle is a build tool with a focus on build automation and support for multi-la
 Learn more about what makes Gradle a compelling choice for build automation or get started with Gradle right now.</description>
     <projectUrl>http://gradle.org/</projectUrl>
     <tags>gradle java build automation management admin</tags>
-    <copyright>© 2018 Gradle Inc.</copyright>
+    <copyright>© 2019 Gradle Inc.</copyright>
     <licenseUrl>http://www.gradle.org/license</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <iconUrl>https://raw.githubusercontent.com/gradle/gradle/master/gradle.png</iconUrl>
@@ -24,14 +24,25 @@ Learn more about what makes Gradle a compelling choice for build automation or g
     <bugTrackerUrl>https://github.com/gradle/gradle/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/gradle/gradle</projectSourceUrl>
     <packageSourceUrl>https://github.com/rocklass/gradle-chocolatey-packages</packageSourceUrl>
-    <releaseNotes>This bug-fix release contains 3 changes to Gradle 4.10.2:
-- [#7510](https://github.com/gradle/gradle/pull/7510)
-- [#6849](https://github.com/gradle/gradle/issues/6849)
-- [#7014](https://github.com/gradle/gradle/issues/7014)
+    <releaseNotes>The Gradle team is excited to announce Gradle 5.1.
 
-It also incorporates all fixes to 4.10.1 and 4.10.2.
+This release features [repository to dependency matching](https://docs.gradle.org/5.1/release-notes.html#repository-to-dependency-matching), [production-ready configuration avoidance APIs](https://docs.gradle.org/5.1/release-notes.html#configuration-avoidance-for-tasks), [Gradle Kotlin DSL 1.1](https://github.com/gradle/kotlin-dsl/releases/tag/v1.1.0), and more.
 
-We recommend that you use Gradle 4.10.3 over 4.10, 4.10.1 and 4.10.2.</releaseNotes>
+Read the [Gradle 5.x upgrade guide](https://docs.gradle.org/5.1/userguide/upgrading_version_5.html) to learn about breaking changes and considerations for upgrading from Gradle 5.0.
+If upgrading from Gradle 4.x, please read [upgrading from Gradle 4.x to 5.0](https://docs.gradle.org/5.1/userguide/upgrading_version_4.html) first.
+
+We would like to thank the following community contributors to this release of Gradle:
+[Mike Kobit](https://github.com/mkobit),
+[Kent Fletcher](https://github.com/fletcher-sumglobal),
+[Niklas Grebe](https://github.com/ThYpHo0n),
+[Jonathan Leitschuh](https://github.com/JLLeitschuh),
+[Sebastian Schuberth](https://github.com/sschuberth),
+[Dan Sănduleac](https://github.com/dansanduleac),
+[Olivier Voortman](https://github.com/blop),
+[Alex Saveau](https://github.com/SUPERCILEX),
+and [Till Krullmann](https://github.com/tkrullmann).
+
+See the full set of [release notes](https://docs.gradle.org/5.1/release-notes.html).</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
