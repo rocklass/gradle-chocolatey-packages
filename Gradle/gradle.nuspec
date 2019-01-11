@@ -4,7 +4,7 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>5.1</version>
+    <version>5.1.1</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
     <summary>Gradle is a modern open source polyglot build automation system. It can automate and integrate your devOps toolchain with a concise and expressive build programming language based upon the concepts of Apache Ant and Apache Maven.</summary>
@@ -24,25 +24,11 @@ Learn more about what makes Gradle a compelling choice for build automation or g
     <bugTrackerUrl>https://github.com/gradle/gradle/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/gradle/gradle</projectSourceUrl>
     <packageSourceUrl>https://github.com/rocklass/gradle-chocolatey-packages</packageSourceUrl>
-    <releaseNotes>The Gradle team is excited to announce Gradle 5.1.
-
-This release features [repository to dependency matching](https://docs.gradle.org/5.1/release-notes.html#repository-to-dependency-matching), [production-ready configuration avoidance APIs](https://docs.gradle.org/5.1/release-notes.html#configuration-avoidance-for-tasks), [Gradle Kotlin DSL 1.1](https://github.com/gradle/kotlin-dsl/releases/tag/v1.1.0), and more.
-
-Read the [Gradle 5.x upgrade guide](https://docs.gradle.org/5.1/userguide/upgrading_version_5.html) to learn about breaking changes and considerations for upgrading from Gradle 5.0.
-If upgrading from Gradle 4.x, please read [upgrading from Gradle 4.x to 5.0](https://docs.gradle.org/5.1/userguide/upgrading_version_4.html) first.
-
-We would like to thank the following community contributors to this release of Gradle:
-[Mike Kobit](https://github.com/mkobit),
-[Kent Fletcher](https://github.com/fletcher-sumglobal),
-[Niklas Grebe](https://github.com/ThYpHo0n),
-[Jonathan Leitschuh](https://github.com/JLLeitschuh),
-[Sebastian Schuberth](https://github.com/sschuberth),
-[Dan Sănduleac](https://github.com/dansanduleac),
-[Olivier Voortman](https://github.com/blop),
-[Alex Saveau](https://github.com/SUPERCILEX),
-and [Till Krullmann](https://github.com/tkrullmann).
-
-See the full set of [release notes](https://docs.gradle.org/5.1/release-notes.html).</releaseNotes>
+    <releaseNotes>This bug-fix release contains several changes to Gradle 5.1, notably:
+- A daemon memory leak affecting all projects [#8142](https://github.com/gradle/gradle/issues/8142)
+- Incremental Java compilation [#8194](https://github.com/gradle/gradle/issues/8194)
+- A fix to Gradle's generated Javadoc in 5.1 [#8183](https://github.com/gradle/gradle/issues/8183)
+We recommend that you use Gradle 5.1.1 over 5.1.</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
