@@ -4,15 +4,11 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>5.1.1</version>
+    <version>5.2</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
-    <summary>Gradle is a modern open source polyglot build automation system. It can automate and integrate your devOps toolchain with a concise and expressive build programming language based upon the concepts of Apache Ant and Apache Maven.</summary>
-    <description>Gradle combines the power and flexibility of Apache Ant with the dependency management and conventions of Apache Maven into a more effective way to build. Powered by a Groovy DSL and packed with innovation, Gradle provides a declarative way to describe all kinds of builds through sensible defaults. Gradle is quickly becoming the build system of choice for many open source projects, leading edge enterprises and legacy automation challenges.
-
-Gradle is a build tool with a focus on build automation and support for multi-language development. If you are building, testing, publishing, and deploying software on any platform, Gradle offers a flexible model that can support the entire development lifecycle from compiling and packaging code to publishing web sites. Gradle has been designed to support build automation across multiple languages and platforms including Java, Scala, Android, C/C++, and Groovy, and is closely integrated with development tools and continuous integration servers including Eclipse, IntelliJ, and Jenkins.
-
-Learn more about what makes Gradle a compelling choice for build automation or get started with Gradle right now.</description>
+    <summary>Adaptable, fast automation for all</summary>
+    <description>Gradle is a build tool with a focus on build automation and support for multi-language development. If you are building, testing, publishing, and deploying software on any platform, Gradle offers a flexible model that can support the entire development lifecycle from compiling and packaging code to publishing web sites. Gradle has been designed to support build automation across multiple languages and platforms including Java, Scala, Android, C/C++, and Groovy, and is closely integrated with development tools and continuous integration servers including Eclipse, IntelliJ, and Jenkins.</description>
     <projectUrl>http://gradle.org/</projectUrl>
     <tags>gradle java build automation management admin</tags>
     <copyright>© 2019 Gradle Inc.</copyright>
@@ -24,11 +20,11 @@ Learn more about what makes Gradle a compelling choice for build automation or g
     <bugTrackerUrl>https://github.com/gradle/gradle/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/gradle/gradle</projectSourceUrl>
     <packageSourceUrl>https://github.com/rocklass/gradle-chocolatey-packages</packageSourceUrl>
-    <releaseNotes>This bug-fix release contains several changes to Gradle 5.1, notably:
-- A daemon memory leak affecting all projects [#8142](https://github.com/gradle/gradle/issues/8142)
-- Incremental Java compilation [#8194](https://github.com/gradle/gradle/issues/8194)
-- A fix to Gradle's generated Javadoc in 5.1 [#8183](https://github.com/gradle/gradle/issues/8183)
-We recommend that you use Gradle 5.1.1 over 5.1.</releaseNotes>
+    <releaseNotes>The Gradle team is excited to announce Gradle 5.2.
+
+This release features a new [Java Platform plugin](https://docs.gradle.org/5.2/release-notes.html#the-java-platform-plugin), [improved C++ plugins](https://docs.gradle.org/5.2/userguide/cpp_plugins.html), [new C++ project types for gradle init](https://docs.gradle.org/5.2/userguide/build_init_plugin.html#sec:cppapplication_), [service injection into plugins and project extensions](https://docs.gradle.org/5.2/release-notes.html#service-injection-into-plugins-and-project-extensions), [Kotlin DSL 1.1.3](https://github.com/gradle/kotlin-dsl/releases/tag/v1.1.3) and more.
+
+Read the [Gradle 5.x upgrade guide](https://docs.gradle.org/5.2/userguide/upgrading_version_5.html) to learn about breaking changes and considerations for upgrading from Gradle 5.0. If upgrading from Gradle 4.x, please read [upgrading from Gradle 4.x to 5.0](https://docs.gradle.org/5.2/userguide/upgrading_version_4.html) first. Users upgrading from 5.1 should not have to worry about breaking changes.</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
