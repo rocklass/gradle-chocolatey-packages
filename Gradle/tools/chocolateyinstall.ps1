@@ -1,7 +1,7 @@
 ﻿$packageName = 'gradle'
-$version = '5.0'
-$checksum = '6157AC9F3410BC63644625B3B3E9E96C963AFD7910AE0697792DB57813EE79A6'
-$url = "https://services.gradle.org/distributions/gradle-$version-bin.zip"
+$version = '5.2'
+$checksum = '55DB797ADF2705BB782655F012AF7CC7724B14382881F60FB3F3EB4B645C02D6'
+$url = "https://services.gradle.org/distributions/gradle-$version-all.zip"
 $installDir = Split-Path -parent $MyInvocation.MyCommand.Definition
 
 Install-ChocolateyZipPackage $packageName $url $installDir -Checksum $checksum -ChecksumType 'sha256'
