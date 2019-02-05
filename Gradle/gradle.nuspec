@@ -4,42 +4,27 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>4.9</version>
+    <version>5.2</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
-    <summary>Gradle is a modern open source polyglot build automation system. It can automate and integrate your devOps toolchain with a concise and expressive build programming language based upon the concepts of Apache Ant and Apache Maven.</summary>
-    <description>Gradle combines the power and flexibility of Apache Ant with the dependency management and conventions of Apache Maven into a more effective way to build. Powered by a Groovy DSL and packed with innovation, Gradle provides a declarative way to describe all kinds of builds through sensible defaults. Gradle is quickly becoming the build system of choice for many open source projects, leading edge enterprises and legacy automation challenges.
-
-Gradle is a build tool with a focus on build automation and support for multi-language development. If you are building, testing, publishing, and deploying software on any platform, Gradle offers a flexible model that can support the entire development lifecycle from compiling and packaging code to publishing web sites. Gradle has been designed to support build automation across multiple languages and platforms including Java, Scala, Android, C/C++, and Groovy, and is closely integrated with development tools and continuous integration servers including Eclipse, IntelliJ, and Jenkins.
-
-Learn more about what makes Gradle a compelling choice for build automation or get started with Gradle right now.</description>
+    <summary>Adaptable, fast automation for all</summary>
+    <description>Gradle is a build tool with a focus on build automation and support for multi-language development. If you are building, testing, publishing, and deploying software on any platform, Gradle offers a flexible model that can support the entire development lifecycle from compiling and packaging code to publishing web sites. Gradle has been designed to support build automation across multiple languages and platforms including Java, Scala, Android, C/C++, and Groovy, and is closely integrated with development tools and continuous integration servers including Eclipse, IntelliJ, and Jenkins.</description>
     <projectUrl>http://gradle.org/</projectUrl>
     <tags>gradle java build automation management admin</tags>
-    <copyright>© 2017 Gradle Inc.</copyright>
+    <copyright>© 2019 Gradle Inc.</copyright>
     <licenseUrl>http://www.gradle.org/license</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <iconUrl>https://upload.wikimedia.org/wikipedia/en/a/ab/Updated_logo_for_Gradle.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/gradle/gradle/master/gradle.png</iconUrl>
     <docsUrl>https://docs.gradle.org/current/userguide/userguide.html</docsUrl>
     <mailingListUrl>https://discuss.gradle.org/</mailingListUrl>
     <bugTrackerUrl>https://github.com/gradle/gradle/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/gradle/gradle</projectSourceUrl>
     <packageSourceUrl>https://github.com/rocklass/gradle-chocolatey-packages</packageSourceUrl>
-    <releaseNotes>The Gradle team is pleased to announce Gradle 4.9.
+    <releaseNotes>The Gradle team is excited to announce Gradle 5.2.
 
-First, publishing tools get some more love: projects that publish auxiliary publications (e.g. test fixtures) through maven-publish and ivy-publish can now be [depended upon by other projects](https://github.com/gradle/gradle/issues/1061) in the same build. There is also a [new Publishing Overview chapter](https://docs.gradle.org/4.9/userguide/publishing_overview.html) in the user manual and updates throughout the documentation regarding publishing artifacts using Maven and Ivy.
+This release features a new [Java Platform plugin](https://docs.gradle.org/5.2/release-notes.html#the-java-platform-plugin), [improved C++ plugins](https://docs.gradle.org/5.2/userguide/cpp_plugins.html), [new C++ project types for gradle init](https://docs.gradle.org/5.2/userguide/build_init_plugin.html#sec:cppapplication_), [service injection into plugins and project extensions](https://docs.gradle.org/5.2/release-notes.html#service-injection-into-plugins-and-project-extensions), [Kotlin DSL 1.1.3](https://github.com/gradle/kotlin-dsl/releases/tag/v1.1.3) and more.
 
-In addition to lazy tasks use, Kotlin DSL build scripts are evaluated faster with version 0.18.4, included in this version of Gradle. IntelliJ IDEA and Android Studio user experience is also improved.
-See details in the [Kotlin DSL v0.18.x release notes](https://github.com/gradle/kotlin-dsl/releases/tag/v0.18.4).
-
-You can now pass arguments to JavaExec tasks [directly from the command-line](https://docs.gradle.org/4.9/release-notes.html#command-line-args-supported-by-javaexec) using --args:
-
-❯ gradle run --args 'foo --bar'
-
-No more need to hard-code arguments in your build scripts. Consult the documentation for the [Application Plugin](https://docs.gradle.org/4.9/userguide/application_plugin.html#sec:application_usage) for more information.
-
-Last but not least, this version of Gradle has an improved dependency insight report. Read the [details further on](https://docs.gradle.org/4.9/release-notes.html#improved-dependency-insight-report).
-
-We hope you will build happiness with Gradle 4.9, and we look forward to your feedback [via Twitter](https://twitter.com/gradle) or [on GitHub](https://github.com/gradle).</releaseNotes>
+Read the [Gradle 5.x upgrade guide](https://docs.gradle.org/5.2/userguide/upgrading_version_5.html) to learn about breaking changes and considerations for upgrading from Gradle 5.0. If upgrading from Gradle 4.x, please read [upgrading from Gradle 4.x to 5.0](https://docs.gradle.org/5.2/userguide/upgrading_version_4.html) first. Users upgrading from 5.1 should not have to worry about breaking changes.</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
