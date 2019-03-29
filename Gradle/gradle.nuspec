@@ -4,7 +4,7 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>5.2.1</version>
+    <version>5.3</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
     <summary>Adaptable, fast automation for all</summary>
@@ -20,10 +20,13 @@
     <bugTrackerUrl>https://github.com/gradle/gradle/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/gradle/gradle</projectSourceUrl>
     <packageSourceUrl>https://github.com/rocklass/gradle-chocolatey-packages</packageSourceUrl>
-    <releaseNotes>This bug-fix release contains several changes to Gradle 5.2, notably:
-- Checkstyle issues with a single source file: [#8394](https://github.com/gradle/gradle/issues/8394)
-- BOM support conflicts: [#8420](https://github.com/gradle/gradle/issues/8420)
-We recommend that you use Gradle 5.2.1 over 5.2.</releaseNotes>
+    <releaseNotes>The Gradle team is excited to announce Gradle 5.3.
+
+This release features support for publishing and consuming Gradle Module Metadata, [feature variants or "optional dependencies"](https://docs.gradle.org/5.3/release-notes.html#feature-variants), [type-safe accessors in Kotlin precompiled script plugins](https://docs.gradle.org/5.3/release-notes.html#type-safe-accessors-in-precompiled-script-plugins), and more.
+
+Read the [Gradle 5.x upgrade guide](https://docs.gradle.org/5.3/userguide/upgrading_version_5.html) to learn about breaking changes and considerations for upgrading from Gradle 5.0. If upgrading from Gradle 4.x, please read [upgrading from Gradle 4.x to 5.0](https://docs.gradle.org/5.3/userguide/upgrading_version_4.html) first.
+
+We would like to thank the following community contributors to this release of Gradle: [Stefan M.](https://github.com/StefMa), [Evgeny Mandrikov](https://github.com/Godin), [Simon Legner](https://github.com/simon04), [Raman Gupta](https://github.com/rocketraman), [Florian Dreier](https://github.com/DreierF), [Kenzie Togami](https://github.com/kenzierocks), [Ricardo Pereira](https://github.com/thc202), [Thad House](https://github.com/ThadHouse), [Joe Kutner](https://github.com/jkutner), and [Josh Soref](https://github.com/jsoref).</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
