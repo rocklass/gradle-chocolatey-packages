@@ -4,7 +4,7 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>5.3.1</version>
+    <version>5.4</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
     <summary>Adaptable, fast automation for all</summary>
@@ -20,10 +20,16 @@
     <bugTrackerUrl>https://github.com/gradle/gradle/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/gradle/gradle</projectSourceUrl>
     <packageSourceUrl>https://github.com/rocklass/gradle-chocolatey-packages</packageSourceUrl>
-    <releaseNotes>This bug-fix release contains several changes to Gradle 5.3, notably:
-- Unable to use java-platform and maven-publish in multi-project: [#8845](https://github.com/gradle/gradle/issues/8845)
-- Unexpected exception when adding a plugin on buildSrc compile classpath: [gradle/kotlin-dsl#1363](https://github.com/gradle/kotlin-dsl/issues/1363)
-We recommend that you use Gradle 5.3.1 over 5.3.</releaseNotes>
+    <releaseNotes>The Gradle team is excited to announce Gradle 5.4.
+
+[Read the release notes](https://docs.gradle.org/5.4/release-notes.html)
+
+We would like to thank the following community contributors to this release of Gradle:
+[Ian Kerins](https://github.com/isker),
+[Roberto Perez Alcolea](https://github.com/rpalcolea),
+[Rodolfo Forte](https://github.com/Tschis),
+[gla3dr](https://github.com/gla3dr),
+and [Stefan M.](https://github.com/StefMa).</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
