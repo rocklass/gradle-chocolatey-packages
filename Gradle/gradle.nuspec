@@ -4,7 +4,7 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>5.2</version>
+    <version>5.5</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
     <summary>Adaptable, fast automation for all</summary>
@@ -20,11 +20,17 @@
     <bugTrackerUrl>https://github.com/gradle/gradle/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/gradle/gradle</projectSourceUrl>
     <packageSourceUrl>https://github.com/rocklass/gradle-chocolatey-packages</packageSourceUrl>
-    <releaseNotes>The Gradle team is excited to announce Gradle 5.2.
+    <releaseNotes>The Gradle team is excited to announce Gradle 5.5.
+The Gradle team is excited to announce Gradle 5.5.
 
-This release features a new [Java Platform plugin](https://docs.gradle.org/5.2/release-notes.html#the-java-platform-plugin), [improved C++ plugins](https://docs.gradle.org/5.2/userguide/cpp_plugins.html), [new C++ project types for gradle init](https://docs.gradle.org/5.2/userguide/build_init_plugin.html#sec:cppapplication_), [service injection into plugins and project extensions](https://docs.gradle.org/5.2/release-notes.html#service-injection-into-plugins-and-project-extensions), [Kotlin DSL 1.1.3](https://github.com/gradle/kotlin-dsl/releases/tag/v1.1.3) and more.
+This release features improvements to build init to generate plugin projects, an API for transforming dependency artifacts, the ability to declare organization-wide Gradle properties, lots of new native plugin documentation and more.
 
-Read the [Gradle 5.x upgrade guide](https://docs.gradle.org/5.2/userguide/upgrading_version_5.html) to learn about breaking changes and considerations for upgrading from Gradle 5.0. If upgrading from Gradle 4.x, please read [upgrading from Gradle 4.x to 5.0](https://docs.gradle.org/5.2/userguide/upgrading_version_4.html) first. Users upgrading from 5.1 should not have to worry about breaking changes.</releaseNotes>
+We would like to thank the following community contributors to this release of Gradle:
+
+Martin d'Anjou, Ben Asher, Mike Kobit, Erhard Pointl, Sebastian Schuberth, Evgeny Mandrikov, Stefan M., Igor Melnichenko, Björn Kautler, Roberto Perez Alcolea and Christian Fränkel.
+
+https://docs.gradle.org/5.5/release-notes.html
+</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
