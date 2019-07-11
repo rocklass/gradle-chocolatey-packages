@@ -4,7 +4,7 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>5.5</version>
+    <version>5.5.1</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
     <summary>Adaptable, fast automation for all</summary>
@@ -20,17 +20,11 @@
     <bugTrackerUrl>https://github.com/gradle/gradle/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/gradle/gradle</projectSourceUrl>
     <packageSourceUrl>https://github.com/rocklass/gradle-chocolatey-packages</packageSourceUrl>
-    <releaseNotes>The Gradle team is excited to announce Gradle 5.5.
-The Gradle team is excited to announce Gradle 5.5.
-
-This release features improvements to build init to generate plugin projects, an API for transforming dependency artifacts, the ability to declare organization-wide Gradle properties, lots of new native plugin documentation and more.
-
-We would like to thank the following community contributors to this release of Gradle:
-
-Martin d'Anjou, Ben Asher, Mike Kobit, Erhard Pointl, Sebastian Schuberth, Evgeny Mandrikov, Stefan M., Igor Melnichenko, Björn Kautler, Roberto Perez Alcolea and Christian Fränkel.
-
-https://docs.gradle.org/5.5/release-notes.html
-</releaseNotes>
+    <releaseNotes>This bug-fix release contains three changes to Gradle 5.5:
+- Combination of errorprone-gradle-plugin and options.fork = true causes Java compilation to fail in Gradle 5.5 [#9897](https://github.com/gradle/gradle/issues/9897)
+- Using dependency declaration gradleKotlinDsl() fails with 5.5 [#9919](https://github.com/gradle/gradle/issues/9919)
+- Chain of transitives aligned by same platform can lead to broken resolution [#9882](https://github.com/gradle/gradle/issues/9882)
+We recommend that you use Gradle 5.5.1 over 5.5.</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
