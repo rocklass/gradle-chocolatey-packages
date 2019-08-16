@@ -4,7 +4,7 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>5.5.1</version>
+    <version>5.6</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
     <summary>Adaptable, fast automation for all</summary>
@@ -20,11 +20,7 @@
     <bugTrackerUrl>https://github.com/gradle/gradle/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/gradle/gradle</projectSourceUrl>
     <packageSourceUrl>https://github.com/rocklass/gradle-chocolatey-packages</packageSourceUrl>
-    <releaseNotes>This bug-fix release contains three changes to Gradle 5.5:
-- Combination of errorprone-gradle-plugin and options.fork = true causes Java compilation to fail in Gradle 5.5 [#9897](https://github.com/gradle/gradle/issues/9897)
-- Using dependency declaration gradleKotlinDsl() fails with 5.5 [#9919](https://github.com/gradle/gradle/issues/9919)
-- Chain of transitives aligned by same platform can lead to broken resolution [#9882](https://github.com/gradle/gradle/issues/9882)
-We recommend that you use Gradle 5.5.1 over 5.5.</releaseNotes>
+    <releaseNotes>[Gradle Release Notes]https://docs.gradle.org/5.6/release-notes.html</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
