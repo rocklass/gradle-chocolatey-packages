@@ -4,11 +4,11 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>6.1</version>
+    <version>6.1.1</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
-    <summary>Adaptable, fast automation for all</summary>
-    <description>Gradle is a build tool with a focus on build automation and support for multi-language development. If you are building, testing, publishing, and deploying software on any platform, Gradle offers a flexible model that can support the entire development lifecycle from compiling and packaging code to publishing web sites. Gradle has been designed to support build automation across multiple languages and platforms including Java, Scala, Android, C/C++, and Groovy, and is closely integrated with development tools and continuous integration servers including Eclipse, IntelliJ, and Jenkins.</description>
+    <summary>Accelerate developer productivity</summary>
+    <description>From mobile apps to microservices, from small startups to big enterprises, Gradle helps teams build, automate and deliver better software, faster.</description>
     <projectUrl>http://gradle.org/</projectUrl>
     <tags>gradle java build automation management admin</tags>
     <copyright>© 2019 Gradle Inc.</copyright>
@@ -20,7 +20,7 @@
     <bugTrackerUrl>https://github.com/gradle/gradle/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/gradle/gradle</projectSourceUrl>
     <packageSourceUrl>https://github.com/rocklass/gradle-chocolatey-packages</packageSourceUrl>
-    <releaseNotes>[Gradle Release Notes](https://docs.gradle.org/6.1/release-notes.html)</releaseNotes>
+    <releaseNotes>[Gradle Release Notes](https://docs.gradle.org/6.1.1/release-notes.html)</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
