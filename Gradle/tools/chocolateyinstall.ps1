@@ -1,6 +1,6 @@
 ﻿$packageName = 'gradle'
-$version = '6.7'
-$checksum = '0080DE8491F0918E4F529A6DB6820FA0B9E818EE2386117F4394F95FEB1D5583'
+$version = '6.7.1'
+$checksum = '22449F5231796ABD892C98B2A07C9CEEBE4688D192CD2D6763F8E3BF8ACBEDEB'
 $url = "https://services.gradle.org/distributions/gradle-$version-all.zip"
 $installDir = Split-Path -parent $MyInvocation.MyCommand.Definition
 
