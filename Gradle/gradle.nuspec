@@ -4,7 +4,7 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>7.1</version>
+    <version>7.1.1</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
     <summary>Accelerate developer productivity</summary>
@@ -20,7 +20,7 @@
     <bugTrackerUrl>https://github.com/gradle/gradle/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/gradle/gradle</projectSourceUrl>
     <packageSourceUrl>https://github.com/rocklass/gradle-chocolatey-packages</packageSourceUrl>
-    <releaseNotes>[Gradle Release Notes](https://docs.gradle.org/7.1/release-notes.html)</releaseNotes>
+    <releaseNotes>[Gradle Release Notes](https://docs.gradle.org/7.1.1/release-notes.html)</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
