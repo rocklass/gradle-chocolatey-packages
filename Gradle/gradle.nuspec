@@ -4,14 +4,14 @@
   <metadata>
     <id>gradle</id>
     <title>Gradle</title>
-    <version>7.3</version>
+    <version>7.3.3</version>
     <authors>Gradle Inc.</authors>
     <owners>Patrick Brochado</owners>
     <summary>Accelerate developer productivity</summary>
     <description>From mobile apps to microservices, from small startups to big enterprises, Gradle helps teams build, automate and deliver better software, faster.</description>
     <projectUrl>http://gradle.org/</projectUrl>
     <tags>gradle java build automation management admin</tags>
-    <copyright>© 2020 Gradle Inc.</copyright>
+    <copyright>© 2021 Gradle Inc.</copyright>
     <licenseUrl>http://www.gradle.org/license</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <iconUrl>https://raw.githubusercontent.com/gradle/gradle/master/gradle.png</iconUrl>
@@ -20,7 +20,7 @@
     <bugTrackerUrl>https://github.com/gradle/gradle/issues</bugTrackerUrl>
     <projectSourceUrl>https://github.com/gradle/gradle</projectSourceUrl>
     <packageSourceUrl>https://github.com/rocklass/gradle-chocolatey-packages</packageSourceUrl>
-    <releaseNotes>[Gradle Release Notes](https://docs.gradle.org/7.3/release-notes.html)</releaseNotes>
+    <releaseNotes>[Gradle Release Notes](https://docs.gradle.org/7.3.3/release-notes.html)</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
