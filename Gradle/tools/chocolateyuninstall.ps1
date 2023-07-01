@@ -1,5 +1,5 @@
 ﻿$packageName = 'gradle'
-$version = '8.1.1'
+$version = '8.2'
 
 $installDir = Split-Path -parent $MyInvocation.MyCommand.Definition
 
