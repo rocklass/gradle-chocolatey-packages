@@ -24,19 +24,19 @@ jobs:
             $result = git status --short
             if ($null -eq $result) {
               echo "No changes"
-              Write-Output "result=false" >> $GITHUB_ENV
+              Write-Output "result=false" >> $GITHUB_OUTPUT
             } else {
               echo "Changes found"
-              Write-Output "result=true" >> $GITHUB_ENV
+              Write-Output "result=true" >> $GITHUB_OUTPUT
             }
         name: Check status
         id: status
       - run: git add *.nupkg
         name: Add nupkg
-        if: steps.status.outputs.result == 'true'
+        if: ${{steps.status.outputs.result == 'true'}}
       - run: git commit -m "Updates nupkg"
         name: Commit nupkg
-        if: steps.status.outputs.result == 'true'
+        if: ${{steps.status.outputs.result == 'true'}}
       - run: git push
         name: Push changes
-        if: steps.status.outputs.result == 'true'
+        if: ${{steps.status.outputs.result == 'true'}}
