@@ -24,10 +24,10 @@ jobs:
             $result = git status --short
             if ($null -eq $result) {
               echo "No changes"
-              Write-Output "result=false" >> $GITHUB_OUTPUT
+              Write-Output "result=false" >> $Env:GITHUB_OUTPUT
             } else {
               echo "Changes found"
-              Write-Output "result=true" >> $GITHUB_OUTPUT
+              Write-Output "result=true" >> $Env:GITHUB_OUTPUT
             }
         name: Check status
         id: status
