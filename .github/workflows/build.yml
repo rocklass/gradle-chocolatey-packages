@@ -1,0 +1,42 @@
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    permissions:
+      contents: write
+    defaults:
+      run:
+        shell: pwsh
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: git checkout ${{ github.ref }}
+        name: Checkout branch
+      - run: rm *.nupkg -ErrorAction SilentlyContinue
+        name: Remove old nupkg
+      - run: Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iwr https://community.chocolatey.org/install.ps1 -UseBasicParsing | iex
+        name: Install Chocolatey
+      - run: choco pack Gradle/gradle.nuspec
+        name: Pack nuspec
+      - run: |
+            $result = git status --short
+            if ($null -eq $result) {
+              echo "No changes"
+              Write-Output "result=false" >> $GITHUB_ENV
+            } else {
+              echo "Changes found"
+              Write-Output "result=true" >> $GITHUB_ENV
+            }
+        name: Check status
+        id: status
+      - run: git add *.nupkg
+        name: Add nupkg
+        if: steps.status.outputs.result == 'true'
+      - run: git commit -m "Updates nupkg"
+        name: Commit nupkg
+        if: steps.status.outputs.result == 'true'
+      - run: git push
+        name: Push changes
+        if: steps.status.outputs.result == 'true'
