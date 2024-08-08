@@ -12,7 +12,9 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - run: git checkout ${{ github.ref }}
+      - run: | 
+          $branchName = $Env:GITHUB_REF -replace "refs/heads/", ""
+          git checkout $branchName
         name: Checkout branch
       - run: rm *.nupkg -ErrorAction SilentlyContinue
         name: Remove old nupkg
