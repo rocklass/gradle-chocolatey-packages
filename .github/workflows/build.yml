@@ -31,6 +31,11 @@ jobs:
             }
         name: Check status
         id: status
+      - run: |
+            git config --global user.email "noreply@github.com"
+            git config --global user.name "GitHub Actions"
+        name: Configure git
+        if: ${{steps.status.outputs.result == 'true'}}
       - run: git add *.nupkg
         name: Add nupkg
         if: ${{steps.status.outputs.result == 'true'}}
