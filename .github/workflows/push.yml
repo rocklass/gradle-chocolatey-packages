@@ -1,9 +1,9 @@
 name: Push automatically to Chocolatey
 
 on:
-  push:
-    branches:
-      - master
+  pull_request:
+    types:
+      - closed
 
 jobs:
   deploy:
