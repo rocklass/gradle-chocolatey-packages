@@ -58,5 +58,5 @@ jobs:
           title: "Update Gradle to version ${{ steps.gradle_version.outputs.version }}"
           body: "Automatically updates Gradle to the latest version ${{ steps.gradle_version.outputs.version }}."
           head: "update/${{ steps.gradle_version.outputs.version }}"
-          base: master
+          base: bugfix/get-latest-gradle-version
           labels: "new-version"
