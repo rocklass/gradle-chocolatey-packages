@@ -13,6 +13,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Checkout branch
+        run: git checkout bugfix/get-latest-gradle-version
+
       - name: Get latest Gradle release version
         id: gradle_version
         run: |
