@@ -16,11 +16,11 @@ jobs:
       - name: Get latest Gradle release version
         id: gradle_version
         run: |
-          # Fetch the latest non-RC, non-pre-release version from the Gradle releases
+          # Fetch the latest version from the Gradle releases
           latest_release=$(curl -s https://api.github.com/repos/gradle/gradle/releases | \
-            jq -r '[.[] | select(.prerelease == false and (.tag_name | test("^[0-9]+\\.[0-9]+(\\.[0-9]+)?$")))] | .[0].tag_name')
+            jq -r '[.[] | select(.prerelease == false)] | .[0].name')
 
-          if [ -z "$latest_release" ]; then
+          if [ "$latest_release" == "null" ] || [ -z "$latest_release" ]; then
             echo "No valid release found."
             exit 1
           fi
