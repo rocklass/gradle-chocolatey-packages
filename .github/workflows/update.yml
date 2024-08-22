@@ -63,4 +63,3 @@ jobs:
           branch: "update/${{ steps.gradle_version.outputs.version }}"
           base: bugfix/get-latest-gradle-version
           labels: "new-version"
-          delete-branch: true
