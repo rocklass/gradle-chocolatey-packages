@@ -49,6 +49,9 @@ jobs:
           git add Gradle/gradle.nuspec Gradle/tools/chocolateyinstall.ps1 Gradle/tools/chocolateybeforemodify.ps1
           git commit -m "Update Gradle to ${{ steps.gradle_version.outputs.version }}"
 
+      - name: Push branch to remote
+        run: git push --set-upstream origin update/${{ steps.gradle_version.outputs.version }}
+
       - name: Create pull request
         uses: peter-evans/create-pull-request@v6
         with:
