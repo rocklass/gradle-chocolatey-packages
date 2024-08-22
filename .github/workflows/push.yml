@@ -20,5 +20,11 @@ jobs:
       - name: Set Chocolatey API key
         run: choco apikey --key ${{ secrets.CHOCO_API_KEY }} --source https://push.chocolatey.org/
 
-      - name: Push package to Chocolatey
-        run: choco push *.nupkg --source https://push.chocolatey.org/
+      - name: Find and push package to Chocolatey
+        run: |
+          $nupkgFile = Get-ChildItem -Path . -Filter *.nupkg | Select-Object -First 1
+          if ($null -eq $nupkgFile) {
+            Write-Error "No .nupkg file found."
+            exit 1
+          }
+          choco push $nupkgFile.FullName --source https://push.chocolatey.org/
