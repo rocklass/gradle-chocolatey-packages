@@ -1,0 +1,51 @@
+name: Update Gradle Version
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  check-gradle-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get latest Gradle release version
+        id: gradle_version
+        run: |
+          latest_release=$(curl -s https://api.github.com/repos/gradle/gradle/releases | jq -r '[.[] | select(.prerelease == false and .tag_name | test("^\\d+\\.\\d+\\.\\d+$"))][0].tag_name')
+          echo "Latest release: $latest_release"
+          echo "::set-output name=version::$latest_release"
+
+      - name: Update Gradle version in files
+        id: update_files
+        run: |
+          new_version="${{ steps.gradle_version.outputs.version }}"
+          echo "New Gradle version: $new_version"
+
+          # Update Gradle version in relevant files (e.g., gradle.nuspec, scripts, etc.)
+          sed -i "s/<version>.*<\/version>/<version>${new_version}<\/version>/" Gradle/gradle.nuspec
+          release_notes_url="https://docs.gradle.org/${new_version}/release-notes.html"
+          sed -i "s|<releaseNotes>.*<\/releaseNotes>|<releaseNotes>[Gradle Release Notes](${release_notes_url})<\/releaseNotes>|" Gradle/gradle.nuspec
+          sed -i "s/\$version = '.*'/\$version = '${new_version}'/" Gradle/tools/chocolateyinstall.ps1
+          sed -i "s/\$packageVersion = '.*'/\$packageVersion = '${new_version}'/" Gradle/tools/chocolateybeforemodify.ps1
+
+      - name: Commit changes
+        run: |
+          git config --global user.email "noreply@github.com"
+          git config --global user.name "GitHub Actions"
+          git checkout -b update/${{ steps.gradle_version.outputs.version }}
+          git add Gradle/gradle.nuspec Gradle/tools/chocolateyinstall.ps1 Gradle/tools/chocolateybeforemodify.ps1
+          git commit -m "Update Gradle to ${{ steps.gradle_version.outputs.version }}"
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          title: "Update Gradle to version ${{ steps.gradle_version.outputs.version }}"
+          body: "Automatically updates Gradle to the latest version ${{ steps.gradle_version.outputs.version }}."
+          head: "update/${{ steps.gradle_version.outputs.version }}"
+          base: master
+          labels: "new-version"
