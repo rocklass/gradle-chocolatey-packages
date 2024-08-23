@@ -47,14 +47,6 @@ jobs:
           echo "Latest release: $latest_release"
           echo "::set-output name=version::$latest_release"
 
-      - name: Create new branch
-        run: |
-          echo "Create new branch"
-          echo "git checkout -b update-${{ steps.gradle_version.outputs.version }}"
-          git checkout -b update-${{ steps.gradle_version.outputs.version }}
-          echo "git status"
-          git status
-
       - name: Update files and create a new branch with the commit
         run: |
           new_version="${{ steps.gradle_version.outputs.version }}"
