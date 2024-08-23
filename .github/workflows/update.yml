@@ -7,6 +7,8 @@ on:
 
 jobs:
   check-gradle-release:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
 
     steps:
@@ -53,40 +55,27 @@ jobs:
           echo "git status"
           git status
 
-      - name: Update Gradle version in files
-        id: update_files
+      - name: Update files and create a new branch with the commit
         run: |
           new_version="${{ steps.gradle_version.outputs.version }}"
           echo "New Gradle version: $new_version"
 
-          # Update Gradle version in relevant files (e.g., gradle.nuspec, scripts, etc.)
+          # Create a new branch locally
+          git checkout -b update-${new_version}
+
+          # Update Gradle version in relevant files
           sed -i "s/<version>.*<\/version>/<version>${new_version}<\/version>/" Gradle/gradle.nuspec
           release_notes_url="https://docs.gradle.org/${new_version}/release-notes.html"
           sed -i "s|<releaseNotes>.*<\/releaseNotes>|<releaseNotes>[Gradle Release Notes](${release_notes_url})<\/releaseNotes>|" Gradle/gradle.nuspec
           sed -i "s/\$version = '.*'/\$version = '${new_version}'/" Gradle/tools/chocolateyinstall.ps1
           sed -i "s/\$packageVersion = '.*'/\$packageVersion = '${new_version}'/" Gradle/tools/chocolateybeforemodify.ps1
-          
-          # Display updated content for verification
-          echo "Updated gradle.nuspec:"
-          head -n 20 Gradle/gradle.nuspec
-      
-          echo "Updated chocolateyinstall.ps1:"
-          head -n 20 Gradle/tools/chocolateyinstall.ps1
-      
-          echo "Updated chocolateybeforemodify.ps1:"
-          head -n 20 Gradle/tools/chocolateybeforemodify.ps1
 
-      - name: Commit changes
-        run: |
-          echo "Commit changes"
-          git config --global user.email "noreply@github.com"
-          git config --global user.name "GitHub Actions"
-          #git checkout -b update-${{ steps.gradle_version.outputs.version }}
+          # Add and commit changes
           git add Gradle/gradle.nuspec Gradle/tools/chocolateyinstall.ps1 Gradle/tools/chocolateybeforemodify.ps1
-          git commit -m "Update Gradle to ${{ steps.gradle_version.outputs.version }}"
+          git commit -m "Update Gradle to $new_version"
 
-      - name: Push branch to remote
-        run: git push --set-upstream origin update-${{ steps.gradle_version.outputs.version }}
+          # Push the new branch with the commit to the remote repository
+          git push --set-upstream origin update-${new_version}
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v6
