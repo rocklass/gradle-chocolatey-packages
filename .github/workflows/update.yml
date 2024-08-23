@@ -65,6 +65,16 @@ jobs:
           sed -i "s|<releaseNotes>.*<\/releaseNotes>|<releaseNotes>[Gradle Release Notes](${release_notes_url})<\/releaseNotes>|" Gradle/gradle.nuspec
           sed -i "s/\$version = '.*'/\$version = '${new_version}'/" Gradle/tools/chocolateyinstall.ps1
           sed -i "s/\$packageVersion = '.*'/\$packageVersion = '${new_version}'/" Gradle/tools/chocolateybeforemodify.ps1
+          
+          # Display updated content for verification
+          echo "Updated gradle.nuspec:"
+          head -n 20 Gradle/gradle.nuspec
+      
+          echo "Updated chocolateyinstall.ps1:"
+          head -n 20 Gradle/tools/chocolateyinstall.ps1
+      
+          echo "Updated chocolateybeforemodify.ps1:"
+          head -n 20 Gradle/tools/chocolateybeforemodify.ps1
 
       - name: Commit changes
         run: |
