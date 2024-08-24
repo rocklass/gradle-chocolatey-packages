@@ -130,11 +130,13 @@ jobs:
 
       - name: Create pull request
         run: |
-          gh pr create \
-            --base bugfix/get-latest-gradle-version \
-            --head update-${{ steps.gradle_version.outputs.version }} \
-            --title "Update Gradle to version ${{ steps.gradle_version.outputs.version }}" \
-            --body "Automatically updates Gradle to the latest version ${{ steps.gradle_version.outputs.version }}"
+          gh pr create `
+            --base bugfix/get-latest-gradle-version `
+            --head update-${{ steps.gradle_version.outputs.version }} `
+            --title "Update Gradle to version ${{ steps.gradle_version.outputs.version }}" `
+            --body "Automatically updates Gradle to the latest version ${{ steps.gradle_version.outputs.version }} and packs nupkg."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: pwsh
+
 
