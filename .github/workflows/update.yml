@@ -1,4 +1,4 @@
-name: Update Gradle Version
+name: Update Gradle Version and Build
 
 on:
   schedule:
@@ -6,84 +6,88 @@ on:
   workflow_dispatch:
 
 jobs:
-  check-gradle-release:
+  update-and-build:
     permissions:
       contents: write
-    runs-on: ubuntu-latest
+    runs-on: windows-latest  # Windows environment for Chocolatey
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Checkout branch
-        # run: git checkout bugfix/get-latest-gradle-version
-        run: |
-          echo "Checkout branch"
-          echo "git status"
-          git status
-          
-
-      - name: Git checkout
-        run: |
-          echo "Git checkout"
-          echo "git checkout bugfix/get-latest-gradle-version"
-          git checkout bugfix/get-latest-gradle-version
-          echo "git status"
-          git status
 
       - name: Get latest Gradle release version
         id: gradle_version
         run: |
           echo "Get latest Gradle release version"
           # Fetch the latest version from the Gradle releases
-          latest_release=$(curl -s https://api.github.com/repos/gradle/gradle/releases | \
-            jq -r '[.[] | select(.prerelease == false)] | .[0].name')
+          $latest_release = (Invoke-RestMethod -Uri "https://api.github.com/repos/gradle/gradle/releases" | ConvertFrom-Json | Where-Object { $_.prerelease -eq $false })[0].name
 
-          if [ "$latest_release" == "null" ] || [ -z "$latest_release" ]; then
-            echo "No valid release found."
+          if (-not $latest_release) {
+            Write-Host "No valid release found."
             exit 1
-          fi
+          }
 
-          echo "Latest release: $latest_release"
+          Write-Host "Latest release: $latest_release"
           echo "::set-output name=version::$latest_release"
 
       - name: Update files and create a new branch with the commit
         run: |
-          new_version="${{ steps.gradle_version.outputs.version }}"
+          $new_version = "${{ steps.gradle_version.outputs.version }}"
           echo "New Gradle version: $new_version"
 
           # Create a new branch locally
           git checkout -b update-${new_version}
 
           # Update Gradle version in relevant files
-          sed -i "s/<version>.*<\/version>/<version>${new_version}<\/version>/" Gradle/gradle.nuspec
-          release_notes_url="https://docs.gradle.org/${new_version}/release-notes.html"
-          sed -i "s|<releaseNotes>.*<\/releaseNotes>|<releaseNotes>[Gradle Release Notes](${release_notes_url})<\/releaseNotes>|" Gradle/gradle.nuspec
-          sed -i "s/\$version = '.*'/\$version = '${new_version}'/" Gradle/tools/chocolateyinstall.ps1
-          sed -i "s/\$packageVersion = '.*'/\$packageVersion = '${new_version}'/" Gradle/tools/chocolateybeforemodify.ps1
+          (Get-Content Gradle/gradle.nuspec) -replace '<version>.*</version>', "<version>$new_version</version>" | Set-Content Gradle/gradle.nuspec
+          $release_notes_url = "https://docs.gradle.org/$new_version/release-notes.html"
+          (Get-Content Gradle/gradle.nuspec) -replace '<releaseNotes>.*</releaseNotes>', "<releaseNotes>[Gradle Release Notes]($release_notes_url)</releaseNotes>" | Set-Content Gradle/gradle.nuspec
+          (Get-Content Gradle/tools/chocolateyinstall.ps1) -replace "\$version = '.*'", "\$version = '$new_version'" | Set-Content Gradle/tools/chocolateyinstall.ps1
+          (Get-Content Gradle/tools/chocolateybeforemodify.ps1) -replace "\$packageVersion = '.*'", "\$packageVersion = '$new_version'" | Set-Content Gradle/tools/chocolateybeforemodify.ps1
+
+      - name: Install Chocolatey
+        run: |
+          Set-ExecutionPolicy Bypass -Scope Process -Force
+          [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+          Invoke-WebRequest https://community.chocolatey.org/install.ps1 -UseBasicParsing | Invoke-Expression
+
+      - name: Pack nuspec
+        run: choco pack Gradle/gradle.nuspec
+
+      - name: Check Git status
+        id: status
+        run: |
+          $result = git status --short
+          if (-not $result) {
+            Write-Host "No changes"
+            echo "result=false" >> $Env:GITHUB_OUTPUT
+          } else {
+            Write-Host "Changes found"
+            echo "result=true" >> $Env:GITHUB_OUTPUT
+          }
 
       - name: Configure Git user
         run: |
-          echo "Configuring Git user"
           git config --global user.email "noreply@github.com"
           git config --global user.name "GitHub Actions"
+        if: ${{ steps.status.outputs.result == 'true' }}
 
       - name: Commit changes
         run: |
-          echo "Commit changes"
-          git add Gradle/gradle.nuspec Gradle/tools/chocolateyinstall.ps1 Gradle/tools/chocolateybeforemodify.ps1
-          git commit -m "Update Gradle to ${{ steps.gradle_version.outputs.version }}"
+          git add Gradle/gradle.nuspec Gradle/tools/chocolateyinstall.ps1 Gradle/tools/chocolateybeforemodify.ps1 *.nupkg
+          git commit -m "Update Gradle to ${{ steps.gradle_version.outputs.version }} and pack nupkg"
+        if: ${{ steps.status.outputs.result == 'true' }}
 
       - name: Push branch to remote
         run: |
-          echo "Push branch to remote"
           git push --set-upstream origin update-${{ steps.gradle_version.outputs.version }}
+        if: ${{ steps.status.outputs.result == 'true' }}
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v6
         with:
           title: "Update Gradle to version ${{ steps.gradle_version.outputs.version }}"
-          body: "Automatically updates Gradle to the latest version ${{ steps.gradle_version.outputs.version }}."
+          body: "Automatically updates Gradle to the latest version ${{ steps.gradle_version.outputs.version }} and packs nupkg."
           branch: "update-${{ steps.gradle_version.outputs.version }}"
           base: bugfix/get-latest-gradle-version
           labels: "new-version"
