@@ -10,7 +10,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    runs-on: windows-latest  # Windows environment for Chocolatey
+    runs-on: windows-latest
 
     steps:
       - name: Checkout repository
@@ -47,12 +47,38 @@ jobs:
           }
         shell: pwsh
 
+      - name: Fetch checksum for latest Gradle version
+        id: gradle_checksum
+        run: |
+          $new_version = "${{ steps.gradle_version.outputs.version }}"
+          echo "Fetching checksum for Gradle version: $new_version"
+          
+          try {
+            # Construct the URL for the Gradle checksum page
+            $checksum_url = "https://services.gradle.org/distributions/gradle-$new_version-all.zip.sha256"
+            $checksum = Invoke-RestMethod -Uri $checksum_url -ErrorAction Stop
+          
+            if ($checksum -eq $null) {
+              Write-Host "Failed to fetch checksum."
+              exit 1
+            }
+          
+            Write-Host "Checksum fetched: $checksum"
+            echo "::set-output name=checksum::$checksum"
+          }
+          catch {
+            Write-Host "Failed to fetch the checksum: $_"
+            exit 1
+          }
+        shell: pwsh
+
       - name: Update files and create a new branch with the commit
         run: |
           $new_version = "${{ steps.gradle_version.outputs.version }}"
+          $new_checksum = "${{ steps.gradle_checksum.outputs.checksum }}"
           echo "New Gradle version: $new_version"
+          echo "New Gradle checksum: $new_checksum"
 
-          # Create a new branch locally
           git checkout -b update-${new_version}
 
           # Update Gradle version in relevant files
@@ -60,7 +86,9 @@ jobs:
           $release_notes_url = "https://docs.gradle.org/$new_version/release-notes.html"
           (Get-Content Gradle/gradle.nuspec) -replace '<releaseNotes>.*</releaseNotes>', "<releaseNotes>[Gradle Release Notes]($release_notes_url)</releaseNotes>" | Set-Content Gradle/gradle.nuspec
           (Get-Content Gradle/tools/chocolateyinstall.ps1) -replace "\$version = '.*'", "\$version = '$new_version'" | Set-Content Gradle/tools/chocolateyinstall.ps1
+          (Get-Content Gradle/tools/chocolateyinstall.ps1) -replace "\$checksum = '.*'", "\$checksum = '$new_checksum'" | Set-Content Gradle/tools/chocolateyinstall.ps1
           (Get-Content Gradle/tools/chocolateybeforemodify.ps1) -replace "\$packageVersion = '.*'", "\$packageVersion = '$new_version'" | Set-Content Gradle/tools/chocolateybeforemodify.ps1
+          (Get-Content Gradle/tools/chocolateyuninstall.ps1) -replace "\$version = '.*'", "\$version = '$new_version'" | Set-Content Gradle/tools/chocolateyuninstall.ps1
 
       - name: Install Chocolatey
         run: |
@@ -91,8 +119,8 @@ jobs:
 
       - name: Commit changes
         run: |
-          git add Gradle/gradle.nuspec Gradle/tools/chocolateyinstall.ps1 Gradle/tools/chocolateybeforemodify.ps1 *.nupkg
-          git commit -m "Update Gradle to ${{ steps.gradle_version.outputs.version }} and pack nupkg"
+          git add Gradle/gradle.nuspec *.ps1 *.nupkg
+          git commit -m "Update Gradle to ${{ steps.gradle_version.outputs.version }}"
         if: ${{ steps.status.outputs.result == 'true' }}
 
       - name: Push branch to remote
@@ -101,16 +129,12 @@ jobs:
         if: ${{ steps.status.outputs.result == 'true' }}
 
       - name: Create pull request
-        run: gh pr create -B bugfix/get-latest-gradle-version -H update-${{ steps.gradle_version.outputs.version }} --title 'Update Gradle to version ${{ steps.gradle_version.outputs.version }}' --body 'Automatically updates Gradle to the latest version ${{ steps.gradle_version.outputs.version }} and packs nupkg.'
+        run: |
+          gh pr create \
+            --base bugfix/get-latest-gradle-version \
+            --head update-${{ steps.gradle_version.outputs.version }} \
+            --title "Update Gradle to version ${{ steps.gradle_version.outputs.version }}" \
+            --body "Automatically updates Gradle to the latest version ${{ steps.gradle_version.outputs.version }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      #- name: Create pull request
-      #  uses: peter-evans/create-pull-request@v6
-      #  with:
-      #    commit-message: "Update Gradle to version ${{ steps.gradle_version.outputs.version }}"
-      #    title: "Update Gradle to version ${{ steps.gradle_version.outputs.version }}"
-      #    body: "Automatically updates Gradle to the latest version ${{ steps.gradle_version.outputs.version }} and packs nupkg."
-      #    branch: "update-${{ steps.gradle_version.outputs.version }}"
-      #    base: bugfix/get-latest-gradle-version
-      #    labels: "new-version"
