@@ -99,11 +99,11 @@ jobs:
           git push --set-upstream origin update-${{ steps.gradle_version.outputs.version }}
         if: ${{ steps.status.outputs.result == 'true' }}
 
-      - name: Create pull request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          title: "Update Gradle to version ${{ steps.gradle_version.outputs.version }}"
-          body: "Automatically updates Gradle to the latest version ${{ steps.gradle_version.outputs.version }} and packs nupkg."
-          branch: "update-${{ steps.gradle_version.outputs.version }}"
-          base: bugfix/get-latest-gradle-version
-          labels: "new-version"
+      #- name: Create pull request
+      #  uses: peter-evans/create-pull-request@v6
+      #  with:
+      #    title: "Update Gradle to version ${{ steps.gradle_version.outputs.version }}"
+      #    body: "Automatically updates Gradle to the latest version ${{ steps.gradle_version.outputs.version }} and packs nupkg."
+      #    branch: "update-${{ steps.gradle_version.outputs.version }}"
+      #    base: bugfix/get-latest-gradle-version
+      #    labels: "new-version"
