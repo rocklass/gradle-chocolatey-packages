@@ -52,7 +52,7 @@ jobs:
           echo "New Gradle version: $new_version"
 
           # Create a new branch locally
-          git checkout -b update-${new_version}
+          #git checkout -b update-${new_version}
 
           # Update Gradle version in relevant files
           (Get-Content Gradle/gradle.nuspec) -replace '<version>.*</version>', "<version>$new_version</version>" | Set-Content Gradle/gradle.nuspec
