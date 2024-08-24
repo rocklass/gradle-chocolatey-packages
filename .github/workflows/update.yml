@@ -19,16 +19,32 @@ jobs:
         id: gradle_version
         run: |
           echo "Get latest Gradle release version"
+          
           # Fetch the latest version from the Gradle releases
-          $latest_release = (Invoke-RestMethod -Uri "https://api.github.com/repos/gradle/gradle/releases" | ConvertFrom-Json | Where-Object { $_.prerelease -eq $false })[0].name
-
-          if (-not $latest_release) {
-            Write-Host "No valid release found."
+          try {
+            $response = Invoke-RestMethod -Uri "https://api.github.com/repos/gradle/gradle/releases" -ErrorAction Stop
+          
+            if ($response -eq $null) {
+              Write-Host "No response from API."
+              exit 1
+            }
+          
+            # Filter for the latest non-prerelease version
+            $latest_release = ($response | Where-Object { $_.prerelease -eq $false })[0].name
+          
+            if (-not $latest_release) {
+              Write-Host "No valid release found."
+              exit 1
+            }
+          
+            Write-Host "Latest release: $latest_release"
+            echo "::set-output name=version::$latest_release"
+          }
+          catch {
+            Write-Host "Failed to fetch the latest Gradle release version: $_"
             exit 1
           }
-
-          Write-Host "Latest release: $latest_release"
-          echo "::set-output name=version::$latest_release"
+        shell: pwsh
 
       - name: Update files and create a new branch with the commit
         run: |
