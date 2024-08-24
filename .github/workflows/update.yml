@@ -52,7 +52,7 @@ jobs:
           echo "New Gradle version: $new_version"
 
           # Create a new branch locally
-          #git checkout -b update-${new_version}
+          git checkout -b update-${new_version}
 
           # Update Gradle version in relevant files
           (Get-Content Gradle/gradle.nuspec) -replace '<version>.*</version>', "<version>$new_version</version>" | Set-Content Gradle/gradle.nuspec
@@ -88,23 +88,28 @@ jobs:
           git config --global user.name "GitHub Actions"
         if: ${{ steps.status.outputs.result == 'true' }}
 
-      #- name: Commit changes
-      #  run: |
-      #    git add Gradle/gradle.nuspec Gradle/tools/chocolateyinstall.ps1 Gradle/tools/chocolateybeforemodify.ps1 *.nupkg
-      #    git commit -m "Update Gradle to ${{ steps.gradle_version.outputs.version }} and pack nupkg"
-      #  if: ${{ steps.status.outputs.result == 'true' }}
+      - name: Commit changes
+        run: |
+          git add Gradle/gradle.nuspec Gradle/tools/chocolateyinstall.ps1 Gradle/tools/chocolateybeforemodify.ps1 *.nupkg
+          git commit -m "Update Gradle to ${{ steps.gradle_version.outputs.version }} and pack nupkg"
+        if: ${{ steps.status.outputs.result == 'true' }}
 
-      #- name: Push branch to remote
-      #  run: |
-      #    git push --set-upstream origin update-${{ steps.gradle_version.outputs.version }}
-      #  if: ${{ steps.status.outputs.result == 'true' }}
+      - name: Push branch to remote
+        run: |
+          git push --set-upstream origin update-${{ steps.gradle_version.outputs.version }}
+        if: ${{ steps.status.outputs.result == 'true' }}
 
       - name: Create pull request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          commit-message: "Update Gradle to version ${{ steps.gradle_version.outputs.version }}"
-          title: "Update Gradle to version ${{ steps.gradle_version.outputs.version }}"
-          body: "Automatically updates Gradle to the latest version ${{ steps.gradle_version.outputs.version }} and packs nupkg."
-          branch: "update-${{ steps.gradle_version.outputs.version }}"
-          base: bugfix/get-latest-gradle-version
-          labels: "new-version"
+        run: gh pr create -B bugfix/get-latest-gradle-version -H update-${{ steps.gradle_version.outputs.version }} --title 'Update Gradle to version ${{ steps.gradle_version.outputs.version }}' --body 'Automatically updates Gradle to the latest version ${{ steps.gradle_version.outputs.version }} and packs nupkg.'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      #- name: Create pull request
+      #  uses: peter-evans/create-pull-request@v6
+      #  with:
+      #    commit-message: "Update Gradle to version ${{ steps.gradle_version.outputs.version }}"
+      #    title: "Update Gradle to version ${{ steps.gradle_version.outputs.version }}"
+      #    body: "Automatically updates Gradle to the latest version ${{ steps.gradle_version.outputs.version }} and packs nupkg."
+      #    branch: "update-${{ steps.gradle_version.outputs.version }}"
+      #    base: bugfix/get-latest-gradle-version
+      #    labels: "new-version"
