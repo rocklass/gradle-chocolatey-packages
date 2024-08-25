@@ -139,7 +139,7 @@ jobs:
 
       - name: Remove old .nupkg files
         run: |
-          git rm Gradle/*.nupkg
+          git rm *.nupkg
         shell: pwsh
 
       - name: Install Chocolatey
