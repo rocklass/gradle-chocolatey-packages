@@ -88,7 +88,7 @@ jobs:
             -replace "<releaseNotes>.*</releaseNotes>", "<releaseNotes>[Gradle Release Notes]($release_notes_url)</releaseNotes>" | Out-File "Gradle/gradle.nuspec" -Encoding utf8
 
           # Define a helper function to cleanly replace lines in PowerShell files
-          function Replace-Version-And-Checksum {
+          function Replace-Version-And-Checksum { 
             param (
               [string]$filePath,
               [string]$searchPattern,
@@ -100,34 +100,34 @@ jobs:
             
             # Replace matching lines
             $updatedContent = $content | ForEach-Object {
-            if ($_ -match $searchPattern) {
-              $replacement
-            } else {
-              $_
+              if ($_ -match $searchPattern) {
+                $replacement
+              } else {
+                $_
+              }
             }
-          }
-          
-          # Save the updated content back to the file
-          Set-Content -Path $filePath -Value $updatedContent
+            
+            # Save the updated content back to the file
+            Set-Content -Path $filePath -Value $updatedContent
           }
       
           # Update chocolateyinstall.ps1: version and checksum lines
           Replace-Version-And-Checksum -filePath "Gradle/tools/chocolateyinstall.ps1" `
-          -searchPattern '^\$version\s*=.*' `
-          -replacement "\$version = '$new_version'"
+            -searchPattern '^\$version\s*=.*' `
+            -replacement "\$version = '$new_version'"
           Replace-Version-And-Checksum -filePath "Gradle/tools/chocolateyinstall.ps1" `
-          -searchPattern '^\$checksum\s*=.*' `
-          -replacement "\$checksum = '$new_checksum'"
+            -searchPattern '^\$checksum\s*=.*' `
+            -replacement "\$checksum = '$new_checksum'"
       
           # Update chocolateybeforemodify.ps1: packageVersion line
           Replace-Version-And-Checksum -filePath "Gradle/tools/chocolateybeforemodify.ps1" `
-          -searchPattern '^\$packageVersion\s*=.*' `
-          -replacement "\$packageVersion = '$new_version'"
+            -searchPattern '^\$packageVersion\s*=.*' `
+            -replacement "\$packageVersion = '$new_version'"
       
           # Update chocolateyuninstall.ps1: version line
           Replace-Version-And-Checksum -filePath "Gradle/tools/chocolateyuninstall.ps1" `
-          -searchPattern '^\$version\s*=.*' `
-          -replacement "\$version = '$new_version'"
+            -searchPattern '^\$version\s*=.*' `
+            -replacement "\$version = '$new_version'"
     
           # Optionally print out the updated files for verification
           Write-Host "Updated chocolateyinstall.ps1:"
