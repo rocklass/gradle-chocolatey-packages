@@ -137,9 +137,9 @@ jobs:
           Update-FileContent -filePath "Gradle/tools/chocolateyuninstall.ps1" `
             -versionReplacement $new_version
 
-      - name: Clean up old .nupkg files
+      - name: Remove old .nupkg files
         run: |
-          Remove-Item -Path "Gradle/*.nupkg" -ErrorAction SilentlyContinue
+          git rm Gradle/*.nupkg
         shell: pwsh
 
       - name: Install Chocolatey
