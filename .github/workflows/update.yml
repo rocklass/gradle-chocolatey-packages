@@ -88,18 +88,15 @@ jobs:
             -replace "<releaseNotes>.*</releaseNotes>", "<releaseNotes>[Gradle Release Notes]($release_notes_url)</releaseNotes>" | Out-File "Gradle/gradle.nuspec" -Encoding utf8
 
           # Update Gradle version and checksum in chocolateyinstall.ps1
-          (Get-Content "Gradle/tools/chocolateyinstall.ps1") `
-            -replace "\$version = '.*'", "\$version = '$new_version'" `
-            -replace "\$checksum = '.*'", "\$checksum = '$new_checksum'" | Set-Content "Gradle/tools/chocolateyinstall.ps1"
-      
+          (Get-Content Gradle/tools/chocolateyinstall.ps1) -replace '$version = ".+"', "\$version = '8.10'" | Set-Content Gradle/tools/chocolateyinstall.ps1
+          (Get-Content Gradle/tools/chocolateyinstall.ps1) -replace '$checksum = ".+"', "\$checksum = '$new_checksum'" | Set-Content Gradle/tools/chocolateyinstall.ps1
+          
           # Update package version in chocolateybeforemodify.ps1
-          (Get-Content "Gradle/tools/chocolateybeforemodify.ps1") `
-            -replace "\$packageVersion = '.*'", "\$packageVersion = '$new_version'" | Set-Content "Gradle/tools/chocolateybeforemodify.ps1"
-      
+          (Get-Content Gradle/tools/chocolateybeforemodify.ps1) -replace '$packageVersion = ".+"', "\$packageVersion = '8.10'" | Set-Content Gradle/tools/chocolateybeforemodify.ps1
+          
           # Update version in chocolateyuninstall.ps1
-          (Get-Content "Gradle/tools/chocolateyuninstall.ps1") `
-            -replace "\$version = '.*'", "\$version = '$new_version'" | Set-Content "Gradle/tools/chocolateyuninstall.ps1"
-    
+          (Get-Content Gradle/tools/chocolateyuninstall.ps1) -replace '$version = ".+"', "\$version = '8.10'" | Set-Content Gradle/tools/chocolateyuninstall.ps1
+          
           # Optionally print out the updated files for verification
           Write-Host "Updated chocolateyinstall.ps1:"
           Get-Content Gradle/tools/chocolateyinstall.ps1
