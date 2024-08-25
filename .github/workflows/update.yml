@@ -87,18 +87,21 @@ jobs:
             -replace "<version>.*</version>", "<version>$new_version</version>" `
             -replace "<releaseNotes>.*</releaseNotes>", "<releaseNotes>[Gradle Release Notes]($release_notes_url)</releaseNotes>" | Out-File "Gradle/gradle.nuspec" -Encoding utf8
 
-          # Replace line starting with $version in chocolateyinstall.ps1
+          # Replace the line starting with $version in chocolateyinstall.ps1
           (Get-Content "Gradle/tools/chocolateyinstall.ps1") `
-            -replace '^\$version\s*=.*', "\$version = '$new_version'" `
-            -replace '^\$checksum\s*=.*', "\$checksum = '$new_checksum'" | Set-Content "Gradle/tools/chocolateyinstall.ps1"
+            | ForEach-Object { $_ -replace '^\$version\s*=.*', "\$version = '$new_version'" `
+            -replace '^\$checksum\s*=.*', "\$checksum = '$new_checksum'" } `
+            | Set-Content "Gradle/tools/chocolateyinstall.ps1"
       
-          # Replace line starting with $packageVersion in chocolateybeforemodify.ps1
+          # Replace the line starting with $packageVersion in chocolateybeforemodify.ps1
           (Get-Content "Gradle/tools/chocolateybeforemodify.ps1") `
-            -replace '^\$packageVersion\s*=.*', "\$packageVersion = '$new_version'" | Set-Content "Gradle/tools/chocolateybeforemodify.ps1"
+            | ForEach-Object { $_ -replace '^\$packageVersion\s*=.*', "\$packageVersion = '$new_version'" } `
+            | Set-Content "Gradle/tools/chocolateybeforemodify.ps1"
       
-          # Replace line starting with $version in chocolateyuninstall.ps1
+          # Replace the line starting with $version in chocolateyuninstall.ps1
           (Get-Content "Gradle/tools/chocolateyuninstall.ps1") `
-            -replace '^\$version\s*=.*', "\$version = '$new_version'" | Set-Content "Gradle/tools/chocolateyuninstall.ps1"
+            | ForEach-Object { $_ -replace '^\$version\s*=.*', "\$version = '$new_version'" } `
+            | Set-Content "Gradle/tools/chocolateyuninstall.ps1"
     
           # Optionally print out the updated files for verification
           Write-Host "Updated chocolateyinstall.ps1:"
