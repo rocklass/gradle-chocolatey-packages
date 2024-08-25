@@ -82,27 +82,25 @@ jobs:
           git checkout -b update-${new_version}
 
           # Update Gradle version in gradle.nuspec
-          (Get-Content Gradle/gradle.nuspec) -replace '<version>.*</version>', "<version>$new_version</version>" | Set-Content Gradle/gradle.nuspec
           $release_notes_url = "https://docs.gradle.org/$new_version/release-notes.html"
-          (Get-Content Gradle/gradle.nuspec) -replace '<releaseNotes>.*</releaseNotes>', "<releaseNotes>[Gradle Release Notes]($release_notes_url)</releaseNotes>" | Set-Content Gradle/gradle.nuspec
+          (Get-Content "Gradle/gradle.nuspec") `
+            -replace "<version>.*</version>", "<version>$new_version</version>" `
+            -replace "<releaseNotes>.*</releaseNotes>", "<releaseNotes>[Gradle Release Notes]($release_notes_url)</releaseNotes>" | Out-File "Gradle/gradle.nuspec" -Encoding utf8
 
-          # Update version and checksum in chocolateyinstall.ps1
-          (Get-Content Gradle/tools/chocolateyinstall.ps1) `
-              -replace "(\$version\s*=\s*)'.*'", "`$1'$new_version'" `
-              -replace "(\$checksum\s*=\s*)'.*'", "`$1'$new_checksum'" `
-              | Set-Content Gradle/tools/chocolateyinstall.ps1
+          # Update Gradle version and checksum in chocolateyinstall.ps1
+          (Get-Content "Gradle/tools/chocolateyinstall.ps1") `
+            -replace "\$version = '.*'", "\$version = '$new_version'" `
+            -replace "\$checksum = '.*'", "\$checksum = '$new_checksum'" | Out-File "Gradle/tools/chocolateyinstall.ps1" -Encoding utf8
 
-          # Update version in chocolateybeforemodify.ps1
-          (Get-Content Gradle/tools/chocolateybeforemodify.ps1) `
-              -replace "(\$packageVersion\s*=\s*)'.*'", "`$1'$new_version'" `
-              | Set-Content Gradle/tools/chocolateybeforemodify.ps1
+          # Update package version in chocolateybeforemodify.ps1
+          (Get-Content "Gradle/tools/chocolateybeforemodify.ps1") `
+            -replace "\$packageVersion = '.*'", "\$packageVersion = '$new_version'" | Out-File "Gradle/tools/chocolateybeforemodify.ps1" -Encoding utf8
 
           # Update version in chocolateyuninstall.ps1
-          (Get-Content Gradle/tools/chocolateyuninstall.ps1) `
-              -replace "(\$version\s*=\s*)'.*'", "`$1'$new_version'" `
-              | Set-Content Gradle/tools/chocolateyuninstall.ps1
+          (Get-Content "Gradle/tools/chocolateyuninstall.ps1") `
+            -replace "\$version = '.*'", "\$version = '$new_version'" | Out-File "Gradle/tools/chocolateyuninstall.ps1" -Encoding utf8
 
-          # Optional: Print the content after changes for debugging
+          # Optionally print out the updated files for verification
           Write-Host "Updated chocolateyinstall.ps1:"
           Get-Content Gradle/tools/chocolateyinstall.ps1
           Write-Host "Updated chocolateybeforemodify.ps1:"
