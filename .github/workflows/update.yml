@@ -81,14 +81,34 @@ jobs:
 
           git checkout -b update-${new_version}
 
-          # Update Gradle version in relevant files
+          # Update Gradle version in gradle.nuspec
           (Get-Content Gradle/gradle.nuspec) -replace '<version>.*</version>', "<version>$new_version</version>" | Set-Content Gradle/gradle.nuspec
           $release_notes_url = "https://docs.gradle.org/$new_version/release-notes.html"
           (Get-Content Gradle/gradle.nuspec) -replace '<releaseNotes>.*</releaseNotes>', "<releaseNotes>[Gradle Release Notes]($release_notes_url)</releaseNotes>" | Set-Content Gradle/gradle.nuspec
-          (Get-Content Gradle/tools/chocolateyinstall.ps1) -replace "\$version\s*=\s*'.*'", "\$version = '$new_version'" | Set-Content Gradle/tools/chocolateyinstall.ps1
-          (Get-Content Gradle/tools/chocolateyinstall.ps1) -replace "\$checksum\s*=\s*'.*'", "\$checksum = '$new_checksum'" | Set-Content Gradle/tools/chocolateyinstall.ps1
-          (Get-Content Gradle/tools/chocolateybeforemodify.ps1) -replace "\$packageVersion\s*=\s*'.*'", "\$packageVersion = '$new_version'" | Set-Content Gradle/tools/chocolateybeforemodify.ps1
-          (Get-Content Gradle/tools/chocolateyuninstall.ps1) -replace "\$version\s*=\s*'.*'", "\$version = '$new_version'" | Set-Content Gradle/tools/chocolateyuninstall.ps1
+
+          # Update version and checksum in chocolateyinstall.ps1
+          (Get-Content Gradle/tools/chocolateyinstall.ps1) `
+              -replace "(\$version\s*=\s*)'.*'", "`$1'$new_version'" `
+              -replace "(\$checksum\s*=\s*)'.*'", "`$1'$new_checksum'" `
+              | Set-Content Gradle/tools/chocolateyinstall.ps1
+
+          # Update version in chocolateybeforemodify.ps1
+          (Get-Content Gradle/tools/chocolateybeforemodify.ps1) `
+              -replace "(\$packageVersion\s*=\s*)'.*'", "`$1'$new_version'" `
+              | Set-Content Gradle/tools/chocolateybeforemodify.ps1
+
+          # Update version in chocolateyuninstall.ps1
+          (Get-Content Gradle/tools/chocolateyuninstall.ps1) `
+              -replace "(\$version\s*=\s*)'.*'", "`$1'$new_version'" `
+              | Set-Content Gradle/tools/chocolateyuninstall.ps1
+
+          # Optional: Print the content after changes for debugging
+          Write-Host "Updated chocolateyinstall.ps1:"
+          Get-Content Gradle/tools/chocolateyinstall.ps1
+          Write-Host "Updated chocolateybeforemodify.ps1:"
+          Get-Content Gradle/tools/chocolateybeforemodify.ps1
+          Write-Host "Updated chocolateyuninstall.ps1:"
+          Get-Content Gradle/tools/chocolateyuninstall.ps1
 
       - name: Install Chocolatey
         run: |
