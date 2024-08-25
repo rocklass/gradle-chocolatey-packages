@@ -137,6 +137,11 @@ jobs:
           Update-FileContent -filePath "Gradle/tools/chocolateyuninstall.ps1" `
             -versionReplacement $new_version
 
+      - name: Clean up old .nupkg files
+        run: |
+          Remove-Item -Path "Gradle/*.nupkg" -ErrorAction SilentlyContinue
+        shell: pwsh
+
       - name: Install Chocolatey
         run: |
           Set-ExecutionPolicy Bypass -Scope Process -Force
@@ -185,5 +190,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: pwsh
-
-
