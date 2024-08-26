@@ -183,7 +183,7 @@ jobs:
       - name: Create pull request
         run: |
           gh pr create `
-            --base master `
+            --base feature/add-reviewer `
             --head update/${{ steps.gradle_version.outputs.version }} `
             --title "Update Gradle to version ${{ steps.gradle_version.outputs.version }}" `
             --body "Automatically updates Gradle to the latest version ${{ steps.gradle_version.outputs.version }}" `
