@@ -187,7 +187,8 @@ jobs:
             --head update/${{ steps.gradle_version.outputs.version }} `
             --title "Update Gradle to version ${{ steps.gradle_version.outputs.version }}" `
             --body "Automatically updates Gradle to the latest version ${{ steps.gradle_version.outputs.version }}" `
-            --label "new-version"
+            --label "new-version" `
+            --reviewer "rocklass"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: pwsh
