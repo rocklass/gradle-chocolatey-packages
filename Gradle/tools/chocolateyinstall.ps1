@@ -1,4 +1,4 @@
-﻿$packageName = 'gradle'
+$packageName = 'gradle'
 $version = '8.10'
 $checksum = '682b4df7fe5accdca84a4d1ef6a3a6ab096b3efd5edf7de2bd8c758d95a93703'
 $url = "https://services.gradle.org/distributions/gradle-$version-all.zip"
