@@ -1,5 +1,5 @@
 $packageName    = $env:chocolateyPackageName
-$packageVersion = '9.1.0'
+$packageVersion = '9.2.0'
 $toolsDir       = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
 $fileLocation   = Join-Path $toolsDir "$packageName-$packageVersion"
 
