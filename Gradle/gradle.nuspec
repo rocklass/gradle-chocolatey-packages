@@ -14,7 +14,7 @@
     <copyright>© 2024 Gradle Inc.</copyright>
     <licenseUrl>http://www.gradle.org/license</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <iconUrl>https://raw.githubusercontent.com/gradle/gradle/master/gradle.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/gradle/gradle/master/images/gradle-dark-green-primary.png</iconUrl>
     <docsUrl>https://docs.gradle.org/current/userguide/userguide.html</docsUrl>
     <mailingListUrl>https://discuss.gradle.org/</mailingListUrl>
     <bugTrackerUrl>https://github.com/gradle/gradle/issues</bugTrackerUrl>
